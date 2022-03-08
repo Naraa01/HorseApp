@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default (categoryId, searchValue) => {
-  //categoryId book ees awna,, searchValue bs awna,, end local serverees orj irdgv uchir uuruur nerlej bolno
+export default (genderId, searchValue) => {
+  //genderId horse ees awna,, searchValue bs awna,, end local serverees orj irdgv uchir uuruur nerlej bolno
 
-  const [books, setBooks] = useState([]);
+  const [horses, setHorses] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const searchBook = (searchValue) => {
-    console.log(searchValue + " onSearch duudlaa begin book");
+    console.log(searchValue + " onSearch duudlaa begin horse");
   };
 
   useEffect(() => {
@@ -25,18 +25,13 @@ export default (categoryId, searchValue) => {
 
     setLoading(true);
     axios
-      .get(
-        `http://192.168.1.94:8000/api/v1/categories/${categoryId}/books?limit=${limit}${search}`
-      ) //local aas awj bga heseg ymuda
+      .get(`http://192.168.1.94:5000/horsesM`)
       .then((res) => {
-        console.log("Books success, huleej awlaa");
-        // console.log(res.data.data);
-        setBooks(res.data.data);
+        setHorses(res.data.data);
         setErrorMessage(null);
         setLoading(false);
       })
       .catch((err) => {
-        //console.log(err.message)
         let message = err.message; //const bwal unshij chadahgu uchir
         if (message === "Request failed with status code 404")
           message = "Uuchlaarai iim ugugdul baihgu bn";
@@ -46,6 +41,6 @@ export default (categoryId, searchValue) => {
         setErrorMessage(message);
         setLoading(false);
       });
-  }, [categoryId, searchValue]); //componentDidMount,, searchValue utga uurchlugdhud dahiad render hiij ajillana
-  return [books, errorMessage, searchBook, loading];
+  }, [genderId, searchValue]);
+  return [horses, errorMessage, searchBook, loading];
 };

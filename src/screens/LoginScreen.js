@@ -12,24 +12,24 @@ import MyInput from "../components/MyInput";
 export default function ({ navigation, route }) {
   //navigation delgets hoorond shiljih // props dotroosoo distract hiigeed awj bga
 
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [token, setToken] = useState("");
   const [error, setError] = useState(null);
 
   const loginHandler = () => {
-    if (email.length === 0) {
-      Alert.alert("Email hooson baina");
+    if (name.length === 0) {
+      Alert.alert("Нэр хоосон байна");
       return;
     }
 
     if (password.length === 0) {
-      Alert.alert("Password hooson baina");
+      Alert.alert("Нууц үг хоосон байна");
       return;
     }
 
     axios
-      .post(`http://192.168.1.94:8000/api/v1/users/login`, { email, password })
+      .post(`http://192.168.1.94:5000/userM/login`, { name, password })
       .then((res) => {
         console.log(res.data);
         AsyncStorage.setItem("user_token", res.data.token)
@@ -73,8 +73,8 @@ export default function ({ navigation, route }) {
   return (
     <View>
       <Image
-        style={{ width: "100%", height: "30%" }}
-        source={require("../../assets/img/shop.png")} // zurgiin bairshil
+        style={{ width: "100%", height: "32%" }}
+        source={require("../../assets/img/horse0308.webp")} // zurgiin bairshil
       />
 
       <Text style={{ textAlign: "center", fontSize: 20, marginTop: 10 }}>
@@ -94,14 +94,14 @@ export default function ({ navigation, route }) {
       /> */}
 
       <MyInput
-        keyboardType="email-address"
-        placeholder="Ta email haygaa oruulna uu, MyInput"
-        onChangeText={setEmail} //uurchlugduh bolgond setEmail ruu oruulna
+        //keyboardType="email-address"
+        placeholder="Та нэрээ оруулна уу?"
+        onChangeText={setName} //uurchlugduh bolgond setName ruu oruulna
       />
       <MyInput
         secureTextEntry={true}
         style={css.inputField}
-        placeholder="Password oruulna uu"
+        placeholder="Нууц үгээ оруулна уу"
         onChangeText={setPassword} //onChangePhone n end bichigdssen uchir asuudalgv urgejline
       />
 

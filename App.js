@@ -10,7 +10,7 @@ import { Button, Text, View, Alert, StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native"; //
 
 import MyDrawerNavigator from "./src/navigation/MyDrawerNavigator";
-import MyStackNavigator from "./src/navigation/MyStackNavigator";
+// import MyStackNavigator from "./src/navigation/MyStackNavigator";
 
 function App() {
   return (

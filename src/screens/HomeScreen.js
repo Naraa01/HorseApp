@@ -9,11 +9,9 @@ import {
 } from "react-native";
 
 import Search from "../components/Search";
-import CategoryBookList from "../components/CategoryBookList";
-import useCategory from "../hooks/useCategory";
+import GenderHorsesList from "../components/GenderHorsesList";
 import Spinner from "../components/Spinner";
-
-import MyHeaderButton from "../components/MyHeaderButton";
+// import MyHeaderButton from "../components/MyHeaderButton";
 
 import {
   HeaderButtons,
@@ -23,24 +21,26 @@ import {
   OverflowMenu,
 } from "react-navigation-header-buttons";
 import { Feather } from "@expo/vector-icons";
+import useGender from "../hooks/useGender";
 
 const HomeScreen = ({ navigation }) => {
   const [localSearchText, setLocalSearchText] = useState("");
   const [serverSearchText, setServerSearchText] = useState("");
 
-  const [categories, errorMsg, loading] = useCategory();
+  const [genders, errorMsg, loading] = useGender();
 
+  // console.log(navigation, "props");
   useLayoutEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <HeaderButtons HeaderButtonComponent={MyHeaderButton}>
-          <Item title="Tses" iconName="menu" onPress={() => alert("search")} />
-        </HeaderButtons>
-      ),
-    });
+    // navigation.setOptions({
+    //   headerRight: () => (
+    //     <HeaderButtons HeaderButtonComponent={MyHeaderButton}>
+    //       <Item title="Tses" iconName="menu" onPress={() => alert("search")} />
+    //     </HeaderButtons>
+    //   ),
+    // });
   }, [navigation, localSearchText]); //useEffectte adilhanduu func
 
-  const searchBookFromServer = () => {
+  const searchHorseFromServer = () => {
     console.log(`Serveress ${localSearchText} utgaar haij ehellee...`);
     setServerSearchText(localSearchText);
     console.log(serverSearchText);
@@ -63,7 +63,7 @@ const HomeScreen = ({ navigation }) => {
           <Search
             value={localSearchText}
             onValueChange={setLocalSearchText}
-            onFinishEnter={searchBookFromServer}
+            onFinishEnter={searchHorseFromServer}
           />
           {errorMsg && ( //errorMsg bhin bol Text ajillahgu
             <Text style={{ color: "red", marginHorizontal: 20, top: 20 }}>
@@ -72,9 +72,9 @@ const HomeScreen = ({ navigation }) => {
           )}
 
           <ScrollView style={{ marginTop: 20 }}>
-            {categories.map((el) => (
-              <CategoryBookList
-                //navigation={navigation}
+            {genders.map((el) => (
+              <GenderHorsesList
+                navigation={navigation}
                 searchLocalValue={localSearchText}
                 searchServerValue={serverSearchText} //localSearchText ugchhin bol useg shiweh bolgond unshij bga
                 key={el._id}

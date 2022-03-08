@@ -1,24 +1,24 @@
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import React from "react";
 
-import Book from "./Book";
-import useBooks from "../hooks/useBooks";
+import Horse from "./Horse";
+import useHorses from "../hooks/useHorses";
 import Spinner from "./Spinner";
 
-const CategoryBookList = (props) => {
+const GenderHorsesList = (props) => {
   // props dotroos -- {data, style, searchLocalValue, searchServerValue}
-  const [books, errorMessage, searchBook, loading] = useBooks(
+  const [horses, errorMessage, searchHorse, loading] = useHorses(
     props.data._id,
     props.searchServerValue //haigaad enter darsan utga orj ireh ymuda
   ); //shuud searchServerValue damjuulj blno
-  // console.log(props.data);
+  //console.log(props.data, " props data *//*-*-*-*-**-");
 
-  /* <Button
-            onPress={() => navigation.navigate("Detail")}
-            title="test" //navigation ii navigate iig ashiglan Detail ruu userj bnaa //Detail n App.js deer ugsun ner ym
-          /> */
+  // <Button
+  //   onPress={() => navigation.navigate("Detail")}
+  //   title="test" //navigation ii navigate iig ashiglan Detail ruu userj bnaa //Detail n App.js deer ugsun ner ym
+  // />;
 
-  const filteredBook = books.filter(
+  const filteredHorse = horses.filter(
     (el) => el.name.toLowerCase().includes(props.searchLocalValue.toLowerCase()) //toLowerCase() bugdiin jijgeer hmgu haina
   );
   return (
@@ -32,13 +32,13 @@ const CategoryBookList = (props) => {
           marginBottom: 5,
         }}
       >
-        {props.data.name} - {filteredBook.length}
+        {props.data.name} - {filteredHorse.length}
       </Text>
       <Text style={{ marginLeft: 20 }}>{props.data.description}</Text>
       {errorMessage && (
         <Text style={{ marginLeft: 20, color: "red" }}>{errorMessage}</Text>
       )}
-      {/* {books.map((el) => (
+      {/* {horses.map((el) => (
         <Text key={el.name}>{el.name}</Text>
       ))} */}
 
@@ -47,23 +47,23 @@ const CategoryBookList = (props) => {
       <FlatList
         horizontal //horizontal={true} --gsn utgatai
         showsHorizontalScrollIndicator={false}
-        data={filteredBook} //
-        keyExtractor={(book1) => book1.name} // bugdend n key ugnu
+        data={filteredHorse} //
+        keyExtractor={(horse1) => horse1.name} // bugdend n key ugnu
         renderItem={
-          (book2) => (
-            <Book
-              data3={book2.item}
+          (horse2) => (
+            <Horse
+              data={horse2.item}
               //navigation={props.navigation}
             />
           )
 
-          //<Text>{book2.name}</Text>
+          //<Text>{horse2.name}</Text>
         } //
       />
     </View>
   );
 };
 
-export default CategoryBookList;
+export default GenderHorsesList;
 
 const css = StyleSheet.create({});
