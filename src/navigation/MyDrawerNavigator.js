@@ -12,6 +12,8 @@ import HomeScreen from "../screens/HomeScreen";
 import HorseDetailScreen from "../screens/HorseDetailScreen";
 import SplashScreen from "../screens/SplashScreen";
 
+import DrawerContent from "../components/DrawerContent";
+
 const Drawer = createDrawerNavigator();
 
 import UserContext from "../context/userContext";
@@ -24,7 +26,10 @@ export default () => {
   }
 
   return (
-    <Drawer.Navigator initialRouteName="Home">
+    <Drawer.Navigator
+      initialRouteName="Home"
+      drawerContent={(props) => <DrawerContent {...props} />}
+    >
       <Drawer.Screen
         name="Home"
         component={HomeScreen}

@@ -104,7 +104,7 @@ const HorseDetailScreen = (props) => {
         <Text>Хүйс: {horseId.gender}</Text>
         <Text style={{ fontSize: 14 }}>Мэдээлэл: {horseId.info}</Text>
       </View>
-      <Button onPress={() => props.navigation.goBack()} title="Back" />
+      <Button onPress={() => props.navigation.goBack()} title="Буцах" />
       {state.userRole === "admin" && (
         <View style={{ marginBottom: 100, top: 20 }}>
           <Button onPress={deleteOneHorse} title="Устгах" />
