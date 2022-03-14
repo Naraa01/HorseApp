@@ -11,12 +11,15 @@ import { NavigationContainer } from "@react-navigation/native"; //
 
 import MyDrawerNavigator from "./src/navigation/MyDrawerNavigator";
 // import MyStackNavigator from "./src/navigation/MyStackNavigator";
+import { UserStore } from "./src/context/userContext";
 
 function App() {
   return (
     <NavigationContainer>
       {/* <MyStackNavigator /> */}
-      <MyDrawerNavigator />
+      <UserStore>
+        <MyDrawerNavigator />
+      </UserStore>
     </NavigationContainer>
   );
 }

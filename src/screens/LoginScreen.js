@@ -1,21 +1,25 @@
 // core oos oruulj irj bga
-import { useState } from "react";
+import { useState, useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from "axios";
+// import axios from "axios";
+
 // 3dagch comp
 import { View, Text, Image, StyleSheet, Alert } from "react-native";
 
 //Uuriin bichsen comp
 import MyButton from "../components/MyButton";
 import MyInput from "../components/MyInput";
+import UserContext from "../context/userContext";
 
 export default function ({ navigation, route }) {
   //navigation delgets hoorond shiljih // props dotroosoo distract hiigeed awj bga
 
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [token, setToken] = useState("");
   const [error, setError] = useState(null);
+  // const [token, setToken] = useState("");
+
+  const state = useContext(UserContext);
 
   const loginHandler = () => {
     if (name.length === 0) {
@@ -28,25 +32,27 @@ export default function ({ navigation, route }) {
       return;
     }
 
-    axios
-      .post(`http://192.168.1.94:5000/userM/login`, { name, password })
-      .then((res) => {
-        console.log(res.data);
-        AsyncStorage.setItem("user_token", res.data.token)
-          .then((res) => {
-            console.log("Amjilttai newterch, token hadgalla");
-            navigation.navigate("Home");
-          })
-          .catch((err) => {
-            console.log("Login token hadgalsangu... : " + err.message);
-            setError("Login token hadgalsangu...");
-          }); // key value,, // promise uchir then catch ta
-      })
-      .catch((err) => {
-        console.log(err.response.data.error.message); //response - serverees irsen obekt
-        setError(err.response.data.error.message);
-      });
+    state.login(name, password);
+    // axios
+    //   .post(`http://192.168.1.94:5000/userM/login`, { name, password })
+    //   .then((res) => {
+    //     console.log(res.data);
+    //     AsyncStorage.setItem("user_token", res.data.token)
+    //       .then((res) => {
+    //         console.log("Amjilttai newterch, token hadgalla");
+    //         navigation.navigate("Home");
+    //       })
+    //       .catch((err) => {
+    //         console.log("Login token hadgalsangu... : " + err.message);
+    //         setError("Login token hadgalsangu...");
+    //       }); // key value,, // promise uchir then catch ta
+    //   })
+    //   .catch((err) => {
+    //     console.log(err.response.data.error.message); //response - serverees irsen obekt
+    //     setError(err.response.data.error.message);
+    //   });
 
+    //
     //
     //Alert.alert(`Phone: ${phone}, Pass: ${password}`);
     //navigation.navigate("Login"); //Login huudasnaas login ruu shiljihgeed bga uchir ymar ch uurchlultgv uzuulne
@@ -66,9 +72,9 @@ export default function ({ navigation, route }) {
 
   // console.log(route.params);
 
-  AsyncStorage.getItem("user_token")
-    .then((res) => setToken(res))
-    .catch((err) => console.log("err login token"));
+  // AsyncStorage.getItem("user_token")
+  //   .then((res) => setToken(res))
+  //   .catch((err) => console.log("err login token"));
 
   return (
     <View>
@@ -79,9 +85,6 @@ export default function ({ navigation, route }) {
 
       <Text style={{ textAlign: "center", fontSize: 20, marginTop: 10 }}>
         Login
-      </Text>
-      <Text style={{ textAlign: "center", fontSize: 15, marginTop: 10 }}>
-        Token: {token}
       </Text>
 
       {error && ( //error deer anhnii utga "" baihiin bol Text hooson bn gdg c ymu aldaa zaagaad bn,, null bolgojiij ajillana // uuruu bol const [error, setError] = useState(null); iim bn
@@ -97,12 +100,14 @@ export default function ({ navigation, route }) {
         //keyboardType="email-address"
         placeholder="Та нэрээ оруулна уу?"
         onChangeText={setName} //uurchlugduh bolgond setName ruu oruulna
+        value={name}
       />
       <MyInput
         secureTextEntry={true}
         style={css.inputField}
         placeholder="Нууц үгээ оруулна уу"
         onChangeText={setPassword} //onChangePhone n end bichigdssen uchir asuudalgv urgejline
+        value={password}
       />
 
       <View

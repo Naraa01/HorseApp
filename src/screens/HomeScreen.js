@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState, useLayoutEffect, useContext } from "react";
 import {
   StyleSheet,
   Text,
@@ -22,23 +22,32 @@ import {
 } from "react-navigation-header-buttons";
 import { Feather } from "@expo/vector-icons";
 import useGender from "../hooks/useGender";
+import UserContext from "../context/userContext";
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = ({ navigation, route }) => {
   const [localSearchText, setLocalSearchText] = useState("");
   const [serverSearchText, setServerSearchText] = useState("");
-
   const [genders, errorMsg, loading] = useGender();
+  const [refresh, setRefresh] = useState(false);
 
-  // console.log(navigation, "props");
+  const state = useContext(UserContext);
+
+  if (route.params && route.params.deletedHorse) {
+    Alert.alert(route.params.deletedHorse.name + ": устгагдлаа");
+    delete route.params.deletedHorse;
+    setRefresh(true);
+  }
+
   useLayoutEffect(() => {
-    // navigation.setOptions({
-    //   headerRight: () => (
-    //     <HeaderButtons HeaderButtonComponent={MyHeaderButton}>
-    //       <Item title="Tses" iconName="menu" onPress={() => alert("search")} />
-    //     </HeaderButtons>
-    //   ),
-    // });
-  }, [navigation, localSearchText]); //useEffectte adilhanduu func
+    navigation.setOptions({
+      // headerRight: () => (
+      //   <HeaderButtons HeaderButtonComponent={MyHeaderButton}>
+      //     <Item title="Tses" iconName="menu" onPress={() => alert("search")} />
+      //   </HeaderButtons>
+      // ),
+      title: state.userName ? "Welcome: " + state.userName : "Гарал үүсэл",
+    });
+  }, [navigation, localSearchText, state.userName]); //useEffectte adilhanduu func
 
   const searchHorseFromServer = () => {
     console.log(`Serveress ${localSearchText} utgaar haij ehellee...`);
@@ -74,6 +83,8 @@ const HomeScreen = ({ navigation }) => {
           <ScrollView style={{ marginTop: 20 }}>
             {genders.map((el) => (
               <GenderHorsesList
+                refresh={refresh}
+                setRefresh={setRefresh}
                 navigation={navigation}
                 searchLocalValue={localSearchText}
                 searchServerValue={serverSearchText} //localSearchText ugchhin bol useg shiweh bolgond unshij bga

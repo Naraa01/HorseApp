@@ -1,5 +1,5 @@
 // core oos oruulj irj bga
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -9,6 +9,7 @@ import { View, Text, Image, StyleSheet, Alert } from "react-native";
 //Uuriin bichsen comp
 import MyButton from "../components/MyButton";
 import MyInput from "../components/MyInput";
+import UserContext from "../context/userContext";
 
 export default function ({ navigation, route }) {
   //navigation delgets hoorond shiljih // props dotroosoo distract hiigeed awj bga
@@ -17,6 +18,8 @@ export default function ({ navigation, route }) {
   const [password1, setPassword1] = useState("");
   const [password2, setPassword2] = useState("");
   const [error, setError] = useState(null);
+
+  const state = useContext(UserContext);
 
   const signupHandler = () => {
     setError(null);
@@ -31,29 +34,7 @@ export default function ({ navigation, route }) {
       return;
     }
 
-    axios
-      .post(`http://192.168.1.94:5000/userM/register`, {
-        name: name,
-        email: email,
-        password: password1,
-        role: "user",
-      })
-      .then((res) => {
-        console.log(res.data);
-        AsyncStorage.setItem("user_token", res.data.token)
-          .then((res) => {
-            navigation.navigate("Login");
-            console.log("token hadgalla signUp");
-          })
-          .catch((err) => {
-            console.log("token hadgalsangu... : " + err.message);
-            setError("token hadgalsangu...");
-          }); // key value,, // promise uchir then catch ta
-      })
-      .catch((err) => {
-        console.log(err.response.data.error.message); //response - serverees irsen obekt
-        setError(err.response.data.error.message);
-      });
+    state.signUp(name, email, password1);
   };
 
   return (

@@ -10,16 +10,16 @@ const Horse = ({ data }) => {
   // console.log(data._id, "data ./.././././");
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate("Detail", { horse: data })}
+      onPress={() => navigation.navigate("Details", { horse: data })}
       // onPress={() => navigation.navigate("Detail", { id: data._id })} //parameter damjuulalt,, detail n id g huleej awah bolomjtoi blson
       style={{
-        marginLeft: 15,
-        marginVertical: 15,
-        width: 150,
+        marginLeft: 8,
+        // marginVertical: 10,
+        // width: 100,
       }}
     >
       <Image
-        style={{ width: 150, height: 250, marginRight: 15 }}
+        style={{ width: 170, height: 130 }}
         source={{
           uri: `http://192.168.1.94:5000/profile/` + data.photo,
         }}

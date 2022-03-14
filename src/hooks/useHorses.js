@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default (genderId, searchValue) => {
+export default (genderId, searchValue, refresh, setRefresh) => {
   //genderId horse ees awna,, searchValue bs awna,, end local serverees orj irdgv uchir uuruur nerlej bolno
 
   const [horses, setHorses] = useState([]);
@@ -30,6 +30,7 @@ export default (genderId, searchValue) => {
         setHorses(res.data.data);
         setErrorMessage(null);
         setLoading(false);
+        setRefresh(false);
       })
       .catch((err) => {
         let message = err.message; //const bwal unshij chadahgu uchir
@@ -41,6 +42,6 @@ export default (genderId, searchValue) => {
         setErrorMessage(message);
         setLoading(false);
       });
-  }, [genderId, searchValue]);
+  }, [genderId, searchValue, refresh]);
   return [horses, errorMessage, searchBook, loading];
 };

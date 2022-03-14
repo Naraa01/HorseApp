@@ -9,7 +9,9 @@ const GenderHorsesList = (props) => {
   // props dotroos -- {data, style, searchLocalValue, searchServerValue}
   const [horses, errorMessage, searchHorse, loading] = useHorses(
     props.data._id,
-    props.searchServerValue //haigaad enter darsan utga orj ireh ymuda
+    props.searchServerValue, //haigaad enter darsan utga orj ireh ymuda
+    props.refresh,
+    props.setRefresh
   ); //shuud searchServerValue damjuulj blno
   //console.log(props.data, " props data *//*-*-*-*-**-");
 
@@ -23,7 +25,6 @@ const GenderHorsesList = (props) => {
   );
   return (
     <View style={[{ ...props.style }]}>
-      {/* <Text>aaaa</Text> */}
       <Text
         style={{
           marginLeft: 20,
@@ -38,9 +39,6 @@ const GenderHorsesList = (props) => {
       {errorMessage && (
         <Text style={{ marginLeft: 20, color: "red" }}>{errorMessage}</Text>
       )}
-      {/* {horses.map((el) => (
-        <Text key={el.name}>{el.name}</Text>
-      ))} */}
 
       {loading && <Spinner showText={false} />}
 
@@ -48,11 +46,11 @@ const GenderHorsesList = (props) => {
         horizontal //horizontal={true} --gsn utgatai
         showsHorizontalScrollIndicator={false}
         data={filteredHorse} //
-        keyExtractor={(horse1) => horse1.name} // bugdend n key ugnu
+        keyExtractor={(horse) => horse._id} // bugdend n key ugnu
         renderItem={
-          (horse2) => (
+          (horse) => (
             <Horse
-              data={horse2.item}
+              data={horse.item}
               //navigation={props.navigation}
             />
           )
