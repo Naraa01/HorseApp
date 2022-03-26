@@ -13,7 +13,7 @@ export default () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://192.168.1.94:5000/gender")
+      .get("http://192.168.1.94:5001/gender")
       .then((res) => {
         console.log("gender huleej awlaa");
         // console.log(res.data.data);

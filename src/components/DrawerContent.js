@@ -26,15 +26,18 @@ const DrawerContent = (props) => {
                 lineHeight: 20,
               }}
             >
-              Naraa
+              {state.userName ? state.userName : "Гарал үүсэл"}
             </Title>
-            <Caption style={{ lineHeight: 14 }}>Admin</Caption>
+            <Caption style={{ lineHeight: 14 }}>
+              {state.userRole ? state.userRole : "Тавтай морил"}
+            </Caption>
           </View>
         </View>
 
         <Drawer.Section style={{ marginTop: 15 }}>
           <DrawerItem
             label="Нүүр"
+            onPress={() => props.navigation.navigate("Home")}
             icon={({ color, size }) => (
               <Icon name="horseshoe" color={color} size={size} />
             )}
@@ -45,7 +48,8 @@ const DrawerContent = (props) => {
               {state.userRole === "admin" && (
                 // <Drawer.Screen name="Шинэ ном нэмэх" component={HomeScreen} />
                 <DrawerItem
-                  label="Шинэ ном нэмэх"
+                  label="Шинэ морь нэмэх"
+                  onPress={() => props.navigation.navigate("Шинэ морь нэмэх")}
                   icon={({ color, size }) => (
                     <Icon name="horseshoe" color={color} size={size} />
                   )}
@@ -58,7 +62,9 @@ const DrawerContent = (props) => {
                 )}
               />
               <DrawerItem
+                style={{ borderTopColor: "#f4f4f4", borderTopWidth: 1 }}
                 label="Гарах"
+                onPress={() => state.logout()}
                 icon={({ color, size }) => (
                   <Icon name="logout" color={color} size={size} />
                 )}
@@ -79,12 +85,14 @@ const DrawerContent = (props) => {
             <>
               <DrawerItem
                 label="Бүртгүүлэх"
+                onPress={() => props.navigation.navigate("Signup")}
                 icon={({ color, size }) => (
                   <Icon name="account-plus" color={color} size={size} />
                 )}
               />
               <DrawerItem
                 label="Нэвтрэх"
+                onPress={() => props.navigation.navigate("Login")}
                 icon={({ color, size }) => (
                   <Icon name="login" color={color} size={size} />
                 )}

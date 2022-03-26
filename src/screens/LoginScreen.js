@@ -34,7 +34,7 @@ export default function ({ navigation, route }) {
 
     state.login(name, password);
     // axios
-    //   .post(`http://192.168.1.94:5000/userM/login`, { name, password })
+    //   .post(`http://192.168.1.94:5001/userM/login`, { name, password })
     //   .then((res) => {
     //     console.log(res.data);
     //     AsyncStorage.setItem("user_token", res.data.token)

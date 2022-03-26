@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { url } from "../../Constants";
 
 export default (horseId) => {
   const [horse, setHorse] = useState(null);
@@ -7,9 +8,7 @@ export default (horseId) => {
 
   const loadHorse = async () => {
     try {
-      const result = await axios.get(
-        `http://192.168.1.94:5000/horsesM/${horseId}`
-      );
+      const result = await axios.get(`${url}/horsesM/${horseId}`);
       // console.log(result.data.data);
       setHorse(result.data.data);
       setError(null);
@@ -19,7 +18,7 @@ export default (horseId) => {
   };
 
   const deleteHorse = async () => {
-    return axios.delete(`http://192.168.1.94:5000/horsesM/${horseId}`);
+    return axios.delete(`${url}/horsesM/${horseId}`);
 
     // try {
     //   const result = await

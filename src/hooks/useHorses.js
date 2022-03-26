@@ -23,9 +23,10 @@ export default (genderId, searchValue, refresh, setRefresh) => {
       search = `&search=${searchValue}`;
     }
 
+    // GET {{url}}/gender/622326eef252dca60a8e32a2/horses
     setLoading(true);
     axios
-      .get(`http://192.168.1.94:5000/horsesM`)
+      .get(`http://192.168.1.94:5001/gender/${genderId}/horses`)
       .then((res) => {
         setHorses(res.data.data);
         setErrorMessage(null);

@@ -24,7 +24,7 @@ export const UserStore = (props) => {
 
   const login = (name, password) => {
     axios
-      .post(`http://192.168.1.94:5000/userM/login`, { name, password })
+      .post(`http://192.168.1.94:5001/userM/login`, { name, password })
       .then((res) => {
         console.log(res.data);
 
@@ -42,7 +42,7 @@ export const UserStore = (props) => {
 
   const signUp = (name, email, password) => {
     axios
-      .post(`http://192.168.1.94:5000/userM/register`, {
+      .post(`http://192.168.1.94:5001/userM/register`, {
         name: name,
         email: email,
         password: password,

@@ -87,7 +87,7 @@ const HorseDetailScreen = (props) => {
           //alignSelf: "center"
         }}
         source={{
-          uri: `http://192.168.1.94:5000/profile/` + horseId.photo,
+          uri: `http://192.168.1.94:5001/profile/` + horseId.photo,
         }}
       />
       <View style={{ paddingHorizontal: 30, paddingVertical: 10 }}>

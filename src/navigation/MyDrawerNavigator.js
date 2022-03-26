@@ -1,16 +1,18 @@
 import React, { useContext } from "react";
 
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import MyStackNavigator from "./MyStackNavigator";
-
-import { randomHex } from "randomize-hex";
-const color = randomHex();
+// import MyStackNavigator from "./MyStackNavigator";
+// import { randomHex } from "randomize-hex";
+// const color = randomHex();
 
 import SignupScreen from "../screens/SignupScreen";
 import LoginScreen from "../screens/LoginScreen";
 import HomeScreen from "../screens/HomeScreen";
 import HorseDetailScreen from "../screens/HorseDetailScreen";
 import SplashScreen from "../screens/SplashScreen";
+import HorseAdd from "../screens/HorseAdd";
+
+import { mainColor } from "../../Constants";
 
 import DrawerContent from "../components/DrawerContent";
 
@@ -35,13 +37,17 @@ export default () => {
         component={HomeScreen}
         options={{
           title: "Гарал үүсэл",
-          headerStyle: { backgroundColor: color },
+          headerStyle: { backgroundColor: mainColor },
         }}
       />
       {state.isLoggedIn ? (
         <>
           {state.userRole === "admin" && (
-            <Drawer.Screen name="Шинэ ном нэмэх" component={HomeScreen} />
+            <Drawer.Screen
+              name="Шинэ морь нэмэх"
+              component={HorseAdd}
+              options={{ headerShown: false }}
+            />
           )}
           <Drawer.Screen
             name="Гарах"

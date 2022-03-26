@@ -21,7 +21,7 @@ const Horse = ({ data }) => {
       <Image
         style={{ width: 170, height: 130 }}
         source={{
-          uri: `http://192.168.1.94:5000/profile/` + data.photo,
+          uri: `http://192.168.1.94:5001/profile/` + data.photo,
         }}
       />
       {/* <Text style={{ marginLeft: 10, fontSize: 12, marginTop: 10 }}>
