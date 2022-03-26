@@ -26,7 +26,8 @@ export const UserStore = (props) => {
     axios
       .post(`http://192.168.1.94:5001/userM/login`, { name, password })
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data, "res data ");
+        console.log(res.data.token, "res data token");
 
         loginUserSuccesful(
           res.data.token,
@@ -99,7 +100,8 @@ export const UserStore = (props) => {
     try {
       await AsyncStorage.setItem(
         "user",
-        JSON.stringify({ token, userName, email, userRole })
+        JSON.stringify({ token, userName, email, userRole }),
+        console.log("hadgalj chadlaa ")
       );
       // await AsyncStorage.setItem("user_token", token);
       // await AsyncStorage.setItem("user_name", userName);

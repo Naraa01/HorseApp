@@ -5,8 +5,12 @@ import {
   SafeAreaView,
   StatusBar,
   ScrollView,
+  Alert,
+  Platform,
+  Button,
+  Image,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { mainColor, lightColor, url } from "../../Constants";
 
 import FormText from "../components/FormText";
@@ -18,15 +22,20 @@ import Spinner from "../components/Spinner";
 import MyButton from "../components/MyButton";
 import FormRadioButton from "../components/FormRadioButton";
 import axios from "axios";
+import UserContext from "../context/userContext";
+
+import * as ImagePicker from "expo-image-picker";
+import * as Linking from "expo-linking";
+import { startActivityAsync, ActivityAction } from "expo-intent-launcher";
 
 const HorseAddScreen = (props) => {
   const [genders, errorMsg, loading] = useGender();
   const [horse, setHorse] = useState({
-    name: "Хонгор халзан",
-    father: "Хүрэн",
+    name: "Цагаан",
+    father: "Бор халзан",
     mother: "Хонгор",
-    gender: "",
-    color: "хонгор халзан",
+    gender: "соёолон",
+    color: "цагаан",
     pedigree: "abc",
     country: "cde",
     owner: "Naraa",
@@ -34,7 +43,7 @@ const HorseAddScreen = (props) => {
     sire: "Naraa",
     info: "",
     status: "Одоо байгаа",
-    genderId: "",
+    genderId: null,
     //userId: "61a8eacf0168605e0a5c0354",
   });
 
@@ -52,11 +61,76 @@ const HorseAddScreen = (props) => {
     info: false,
   });
 
+  const [serverError, setServerError] = useState(null);
+  const [saving, setSaving] = useState(false);
+
+  const _token = useContext(UserContext);
+  console.log(_token.token, "token token");
+
   const saveHorse = () => {
-    axios
-      .post(`${url}/horsesM`, horse)
-      .then((res) => console.log(res))
-      .catch((e) => console.log(e.response.data));
+    if (horse.genderId !== null) {
+      setSaving(true);
+      axios
+        .post(`${url}/horsesM`, horse)
+        .then((res) => {
+          console.log(res);
+          const newHorse = res.data.data;
+          props.navigation.navigate("Details", { horse: newHorse });
+        })
+        .catch((e) => {
+          if (e.response) {
+            console.log(e.response.data.error.message);
+            setServerError(e.response.data.error.message);
+          } else setServerError(e.message);
+        })
+        .finally(() => {
+          setSaving(false);
+        });
+    } else {
+      Alert.alert("Хүйс сонгоно уу??");
+    }
+  };
+
+  useEffect(() => {
+    (async () => {
+      if (Platform.OS !== "web") {
+        const { status } = await ImagePicker.requestCameraPermissionsAsync();
+        if (status !== "granted") {
+          Alert.alert("Анхаар", "Утаснаас зураг оруулахыг зөвшөөрнө үү", [
+            {
+              text: "Тохиргоог нээх",
+              onPress: () => {
+                if (Platform.OS === "ios") {
+                  Linking.openURL("app-settings:"); // ios
+                  // } else {
+                  //   // android intent
+                  //   startActivityAsync(ActivityAction.APPLICATION_SETTINGS);
+                }
+              },
+            },
+            {
+              text: "OK",
+              onPress: () => {},
+            },
+          ]);
+        }
+      }
+    })();
+  }, []);
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      setHorse({ ...horse, photo: result.uri });
+    }
   };
 
   const checkName = (text) => {
@@ -106,6 +180,7 @@ const HorseAddScreen = (props) => {
   const toggleStatus = () => {
     setHorse({
       ...horse,
+      // status: !horse.status
       status: horse.status === "Одоо байгаа" ? "Одоо байхгүй" : "Одоо байгаа",
     });
   };
@@ -138,10 +213,19 @@ const HorseAddScreen = (props) => {
           borderTopRightRadius: 30,
         }}
       >
-        {loading ? (
+        {loading || saving ? (
           <Spinner />
         ) : (
           <ScrollView showsVerticalScrollIndicator={false}>
+            {serverError &&
+              Alert.alert("Анхаар", serverError, [
+                {
+                  text: "OK",
+                  onPress: () => {
+                    setServerError(null);
+                  },
+                },
+              ])}
             <FormText
               label="Нэр оруулна уу"
               placeholder="Нэр"
@@ -151,6 +235,22 @@ const HorseAddScreen = (props) => {
               value={horse.name}
               onChangeText={checkName}
             />
+
+            <View
+              style={{
+                flex: 1,
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Button title="Зураг сонгоно уу" onPress={pickImage} />
+              {horse.photo && (
+                <Image
+                  source={{ uri: horse.photo }}
+                  style={{ width: 100, height: 100 }}
+                />
+              )}
+            </View>
 
             <FormRadioButton
               label="Хүйс : "
@@ -295,7 +395,7 @@ const HorseAddScreen = (props) => {
                 title1="Буцах"
                 onPress1={() => props.navigation.goBack()}
               />
-              <MyButton title1="Нэвтрэх" onPress1={saveHorse} />
+              <MyButton title1="Бүртгэх" onPress1={saveHorse} />
             </View>
           </ScrollView>
         )}
