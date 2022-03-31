@@ -34,6 +34,7 @@ export default function ({ navigation, route }) {
 
     state.login(name, password);
     // axios
+    //   .post(`http://192.168.0.124:5001/userM/login`, { name, password })
     //   .post(`http://192.168.1.94:5001/userM/login`, { name, password })
     //   .then((res) => {
     //     console.log(res.data);

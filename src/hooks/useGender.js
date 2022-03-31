@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { url } from "../../Constants";
 
 export default () => {
   const [genders, setGenders] = useState([]);
@@ -13,7 +14,8 @@ export default () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://192.168.1.94:5001/gender")
+      .get(`${url}/gender`)
+      // .get("http://192.168.1.94:5001/gender")
       .then((res) => {
         console.log("gender huleej awlaa");
         // console.log(res.data.data);

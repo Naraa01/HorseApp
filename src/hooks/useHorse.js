@@ -8,8 +8,13 @@ export default (horseId) => {
 
   const loadHorse = async () => {
     try {
-      const result = await axios.get(`${url}/horsesM/${horseId}`);
-      // console.log(result.data.data);
+      const result = await axios.get(
+        `/horsesM/${horseId}`
+        // `http://192.168.1.94:5001//horsesM/${horseId}`
+      );
+      // const result = await axios.get(`${url}/horsesM/${horseId}`);
+
+      console.log(result.data.data, "result.data.data");
       setHorse(result.data.data);
       setError(null);
     } catch (err) {

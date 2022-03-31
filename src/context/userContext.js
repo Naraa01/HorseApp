@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { url } from "../../Constants";
 
 const UserContext = React.createContext();
 
@@ -24,10 +25,11 @@ export const UserStore = (props) => {
 
   const login = (name, password) => {
     axios
-      .post(`http://192.168.1.94:5001/userM/login`, { name, password })
+      .post(`${url}/userM/login`, { name, password })
+      // .post(`http://192.168.1.94:5001/userM/login`, { name, password })
       .then((res) => {
-        console.log(res.data, "res data ");
-        console.log(res.data.token, "res data token");
+        // console.log(res.data, "res data ");
+        // console.log(res.data.token, "res data token");
 
         loginUserSuccesful(
           res.data.token,
@@ -43,7 +45,8 @@ export const UserStore = (props) => {
 
   const signUp = (name, email, password) => {
     axios
-      .post(`http://192.168.1.94:5001/userM/register`, {
+      // .post(`http://192.168.1.94:5001/userM/register`, {
+      .post(`${url}/userM/register`, {
         name: name,
         email: email,
         password: password,

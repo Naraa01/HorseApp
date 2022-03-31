@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { url } from "../../Constants";
 
 export default (genderId, searchValue, refresh, setRefresh) => {
   //genderId horse ees awna,, searchValue bs awna,, end local serverees orj irdgv uchir uuruur nerlej bolno
@@ -26,7 +27,8 @@ export default (genderId, searchValue, refresh, setRefresh) => {
     // GET {{url}}/gender/622326eef252dca60a8e32a2/horses
     setLoading(true);
     axios
-      .get(`http://192.168.1.94:5001/gender/${genderId}/horses`)
+      .get(`${url}/gender/${genderId}/horses`)
+      // .get(`http://192.168.1.94:5001/gender/${genderId}/horses`)
       .then((res) => {
         setHorses(res.data.data);
         setErrorMessage(null);

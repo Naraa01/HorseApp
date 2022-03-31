@@ -39,7 +39,7 @@ const HorseAddScreen = (props) => {
     pedigree: "abc",
     country: "cde",
     owner: "Naraa",
-    // photo: "abbabcd",
+    photo: null,
     sire: "Naraa",
     info: "",
     status: "Одоо байгаа",
@@ -65,7 +65,7 @@ const HorseAddScreen = (props) => {
   const [saving, setSaving] = useState(false);
 
   const _token = useContext(UserContext);
-  console.log(_token.token, "token token");
+  // console.log(_token.token, "token token");
 
   const saveHorse = () => {
     if (horse.genderId !== null) {
@@ -75,7 +75,19 @@ const HorseAddScreen = (props) => {
         .then((res) => {
           console.log(res);
           const newHorse = res.data.data;
+          const xhr = new XMLHttpRequest();
+          const data = FormData();
+          data.append("file", {
+            uri: horse.photo,
+            type: "image/jpg",
+            name: "photo.jpg",
+          });
+          xhr.open("PUT", `${url}/horsesM/${res.data.data_id}/upload-photo`);
+          xhr.send(data);
+
           props.navigation.navigate("Details", { horse: newHorse });
+          console.log(res.data.data_id, "res.data.data");
+          // console.log(res.data.data, "res.data.data");
         })
         .catch((e) => {
           if (e.response) {
@@ -364,7 +376,7 @@ const HorseAddScreen = (props) => {
               errorShow={error.sire}
               onChangeText={checkSire}
             />
-            <FormText label="Зураг оруулна уу" placeholder="Зураг" />
+            {/* <FormText label="Зураг оруулна уу" placeholder="Зураг" /> */}
             <FormText
               label="Гаргасан амжилт"
               placeholder="Гаргасан амжилт"

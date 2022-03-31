@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import React, { useEffect, useState, useLayoutEffect, useContext } from "react";
 import { Feather } from "@expo/vector-icons";
+import { url } from "../../Constants";
 // import axios from "axios";
 
 import useHorse from "../hooks/useHorse";
@@ -23,13 +24,16 @@ const HorseDetailScreen = (props) => {
   const { id } = props.route.params.horse; //
 
   const [horse, error, deleteHorse] = useHorse(props.route.params.horse._id);
-  console.log(horse, "horse");
+
+  // console.log(id, "id ------ horsedetailscreen");
+  // console.log(props.route.params.horse._id, "horse props route");
+  // console.log(horse, "horse");
 
   const state = useContext(UserContext);
   // console.log(state, "state context");
   // console.log(props.data, "props route");
   const horseId = props.route.params.horse;
-  // console.log(horse, " horsehorsea ---- horse ");
+  // console.log(horseId, " horseId ----");
 
   // useLayoutEffect(() => {
   //   // props.navigation.setOptions({
@@ -87,7 +91,8 @@ const HorseDetailScreen = (props) => {
           //alignSelf: "center"
         }}
         source={{
-          uri: `http://192.168.1.94:5001/profile/` + horseId.photo,
+          // uri: `http://192.168.1.94:5001/profile/` + horseId.photo,
+          uri: `${url}/profile/` + horseId.photo,
         }}
       />
       <View style={{ paddingHorizontal: 30, paddingVertical: 10 }}>
@@ -107,7 +112,10 @@ const HorseDetailScreen = (props) => {
       <Button onPress={() => props.navigation.goBack()} title="Буцах" />
       {state.userRole === "admin" && (
         <View style={{ marginBottom: 100, top: 20 }}>
-          <Button onPress={deleteOneHorse} title="Устгах" />
+          <Button
+            //onPress={deleteOneHorse}
+            title="Устгах"
+          />
         </View>
       )}
     </ScrollView>
