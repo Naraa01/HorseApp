@@ -19,6 +19,32 @@ const Horse = ({ data }) => {
         // width: 100,
       }}
     >
+      {/* {data.photo.startsWith("/") ? (
+        <Image
+          style={{
+            width: "170",
+            height: 130,
+            //alignSelf: "center"
+          }}
+          source={{
+            // uri: `http://192.168.1.94:5001/profile/` + horseId.photo,
+            uri: `${url}/profile/` + data.photo,
+          }}
+        />
+      ) : (
+        <Image
+          style={{
+            width: "170",
+            height: 130,
+            //alignSelf: "center"
+          }}
+          source={{
+            // uri: `http://192.168.1.94:5001/profile/` + horseId.photo,
+            uri: url + "/upload/" + data.photo,
+          }}
+        />
+      )} */}
+
       <Image
         style={{ width: 170, height: 130 }}
         source={{
@@ -26,14 +52,15 @@ const Horse = ({ data }) => {
           // uri: `http://192.168.1.94:5001/profile/` + data.photo,
         }}
       />
-      {/* <Text style={{ marginLeft: 10, fontSize: 12, marginTop: 10 }}>
+
+      <Text style={{ marginLeft: 10, fontSize: 12, marginTop: 10 }}>
         {data.name}
       </Text>
       <Text
         style={{ marginLeft: 10, top: 5, fontSize: 12, fontWeight: "bold" }}
       >
         {data.author}
-      </Text> */}
+      </Text>
     </TouchableOpacity>
   );
 };

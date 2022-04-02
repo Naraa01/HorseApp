@@ -70,23 +70,45 @@ const HorseAddScreen = (props) => {
   const saveHorse = () => {
     if (horse.genderId !== null) {
       setSaving(true);
+
+      // const filename = horse.photo.substring(horse.photo.lastIndexOf("/") + 1);
+      const fileUri = horse.photo;
+      const fileExt = fileUri.substring(fileUri.lastIndexOf(".") + 1);
+      horse.photo = `photo_${new Date().getTime()}.${fileExt}`;
+      console.log(fileExt, "fileExt");
+
+      // const filename = horse.photo.substring(horse.photo.lastIndexOf("/") + 1);
+      // const fileExt = filename.substring(filename.lastIndexOf(".") + 1);
+      // console.log(filename, "filename");
+      // console.log(fileExt, "fileExt");
+
+      // const fileUri = horse.photo;
+      // horse.photo = filename;
+      // // horse.photo = `photo_${new Date().getTime()}.${fileExt}`;
+
       axios
         .post(`${url}/horsesM`, horse)
         .then((res) => {
-          console.log(res);
+          // console.log(res, "res");
           const newHorse = res.data.data;
           const xhr = new XMLHttpRequest();
           const data = FormData();
+
           data.append("file", {
-            uri: horse.photo,
-            type: "image/jpg",
-            name: "photo.jpg",
+            uri: fileUri,
+            // uri: horse.photo,
+            type: `image/${fileExt}`,
+            name: horse.photo,
+            // name: filename,
+            // name: "photo.jpg",
           });
-          xhr.open("PUT", `${url}/horsesM/${res.data.data_id}/upload-photo`);
+          xhr.open("PUT", `${url}/horsesM/${res.data.data._id}/upload-photo`);
           xhr.send(data);
 
+          console.log(`${url}/horse/${res.data.data._id}/upload-photo bro`);
+
           props.navigation.navigate("Details", { horse: newHorse });
-          console.log(res.data.data_id, "res.data.data");
+          console.log(res.data.data._id, "res.data.data._id");
           // console.log(res.data.data, "res.data.data");
         })
         .catch((e) => {
@@ -138,7 +160,7 @@ const HorseAddScreen = (props) => {
       quality: 1,
     });
 
-    console.log(result);
+    console.log(result, "ene y");
 
     if (!result.cancelled) {
       setHorse({ ...horse, photo: result.uri });

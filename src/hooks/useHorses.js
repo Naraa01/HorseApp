@@ -16,7 +16,7 @@ export default (genderId, searchValue, refresh, setRefresh) => {
   useEffect(() => {
     //ene func n neg l udaa render hiigdeh ystoi uchir
 
-    let limit = 3;
+    let limit = 30;
     let search = "";
 
     if (searchValue) {

@@ -80,10 +80,40 @@ const HorseDetailScreen = (props) => {
     ]);
   };
 
+  // if (!horseId) {
+  //   return null;
+  // }
+
   return (
     <ScrollView //style={{ padding: 25 }}
       showsVerticalScrollIndicator={false}
     >
+      {/* {horseId.photo.startsWith("/") ? (
+        <Image
+          style={{
+            width: "100%",
+            height: 250,
+            //alignSelf: "center"
+          }}
+          source={{
+            // uri: `http://192.168.1.94:5001/profile/` + horseId.photo,
+            uri: `${url}/profile/` + horseId.photo,
+          }}
+        />
+      ) : (
+        <Image
+          style={{
+            width: "100%",
+            height: 250,
+            //alignSelf: "center"
+          }}
+          source={{
+            // uri: `http://192.168.1.94:5001/profile/` + horseId.photo,
+            uri: url + "/upload/" + horseId.photo,
+          }}
+        />
+      )} */}
+      <Text>{horseId.photo}</Text>
       <Image
         style={{
           width: "100%",
@@ -112,10 +142,7 @@ const HorseDetailScreen = (props) => {
       <Button onPress={() => props.navigation.goBack()} title="Буцах" />
       {state.userRole === "admin" && (
         <View style={{ marginBottom: 100, top: 20 }}>
-          <Button
-            //onPress={deleteOneHorse}
-            title="Устгах"
-          />
+          <Button onPress={deleteOneHorse} title="Устгах" />
         </View>
       )}
     </ScrollView>
