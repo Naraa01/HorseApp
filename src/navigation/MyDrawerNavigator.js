@@ -11,6 +11,7 @@ import HomeScreen from "../screens/HomeScreen";
 import HorseDetailScreen from "../screens/HorseDetailScreen";
 import SplashScreen from "../screens/SplashScreen";
 import HorseAdd from "../screens/HorseAdd";
+import SettingsScreen from "../screens/SettingsScreen";
 
 import { mainColor } from "../../Constants";
 
@@ -49,6 +50,11 @@ export default () => {
               options={{ headerShown: false }}
             />
           )}
+          <Drawer.Screen
+            name="Тохиргоо"
+            component={SettingsScreen}
+            options={{ headerShown: false }}
+          />
           <Drawer.Screen
             name="Гарах"
             component={HomeScreen}

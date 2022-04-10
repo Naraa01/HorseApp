@@ -214,8 +214,8 @@ const HorseAddScreen = (props) => {
   const toggleStatus = () => {
     setHorse({
       ...horse,
-      // status: !horse.status
-      status: horse.status === "Одоо байгаа" ? "Одоо байхгүй" : "Одоо байгаа",
+      status: !horse.status,
+      // status: horse.status === "Одоо байгаа" ? "Одоо байхгүй" : "Одоо байгаа",
     });
   };
 

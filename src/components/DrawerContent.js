@@ -57,6 +57,7 @@ const DrawerContent = (props) => {
               )}
               <DrawerItem
                 label="Тохиргоо"
+                onPress={() => props.navigation.navigate("Тохиргоо")}
                 icon={({ color, size }) => (
                   <Ion name="settings-outline" color={color} size={size} />
                 )}
