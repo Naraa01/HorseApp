@@ -113,31 +113,181 @@ const HorseDetailScreen = (props) => {
           }}
         />
       )} */}
-      <Text>{horseId.photo}</Text>
-      <Image
-        style={{
-          width: "100%",
-          height: 250,
-          //alignSelf: "center"
-        }}
-        source={{
-          // uri: `http://192.168.1.94:5001/profile/` + horseId.photo,
-          uri: `${url}/profile/` + horseId.photo,
-        }}
-      />
-      <View style={{ paddingHorizontal: 30, paddingVertical: 10 }}>
-        <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-          Нэр: {horseId.name}
+
+      <View style={{ margin: 30 }}>
+        <Text style={{ flex: 1, fontSize: 16, color: "gray" }}>Нэр</Text>
+        <Text style={{ flex: 1, fontSize: 25, fontWeight: "bold" }}>
+          {horseId.name}
         </Text>
-        <Text>Эцэг: {horseId.father}</Text>
-        <Text>Эх: {horseId.mother}</Text>
-        <Text>Зүс: {horseId.color}</Text>
-        <Text>Угшил: {horseId.pedigree}</Text>
-        <Text>Эзэн: {horseId.owner}</Text>
-        <Text>Нутаг: {horseId.country}</Text>
-        <Text>Уяач: {horseId.sire}</Text>
-        <Text>Хүйс: {horseId.gender}</Text>
-        <Text style={{ fontSize: 14 }}>Мэдээлэл: {horseId.info}</Text>
+      </View>
+      {/* <Text>{horseId.photo}</Text> */}
+      <View style={{ marginHorizontal: 5, borderRadius: 20 }}>
+        <Image
+          style={{
+            width: "100%",
+            height: 250,
+            //alignSelf: "center"
+            borderRadius: 20,
+          }}
+          source={{
+            // uri: `http://192.168.1.94:5001/profile/` + horseId.photo,
+            uri: `${url}/profile/` + horseId.photo,
+          }}
+        />
+      </View>
+      <View style={{ paddingHorizontal: 0, paddingVertical: 10 }}>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            paddingHorizontal: 10,
+            justifyContent: "space-between",
+            // backgroundColor: "blue",
+          }}
+        >
+          <View
+            style={{
+              // marginHorizontal: 10,
+              paddingHorizontal: 10,
+              // borderBottomRightRadius: 30,
+              // borderRadius: 8,
+              // backgroundColor: "#e5e5e5",
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 14,
+                marginHorizontal: 5,
+                color: "gray",
+                // fontFamily: "JosefinSans-Italic",
+              }}
+            >
+              Эцэг
+            </Text>
+            <Text style={{ fontSize: 20 }}> {horseId.father}</Text>
+          </View>
+          <View style={{ marginHorizontal: 10 }}>
+            <Text style={{ fontSize: 14, color: "gray" }}>Эх</Text>
+            <Text style={{ fontSize: 20 }}>{horseId.mother}</Text>
+          </View>
+          <View style={{ marginHorizontal: 10 }}>
+            <Text style={{ fontSize: 14, color: "gray" }}>Зүс</Text>
+            <Text style={{ fontSize: 20 }}>{horseId.color}</Text>
+          </View>
+        </View>
+        <View
+          style={{
+            marginTop: 8,
+            flexDirection: "row",
+            // backgroundColor: "blue",
+            // flex: 1,
+            // paddingHorizontal: 10,
+            // justifyContent: "space-between",
+          }}
+        >
+          <View
+            style={{
+              flex: 1,
+              paddingLeft: 20,
+              // backgroundColor: "blue",
+            }}
+          >
+            <Text style={{ fontSize: 14, marginHorizontal: 5, color: "gray" }}>
+              Угшил
+            </Text>
+            <Text style={{ fontSize: 20 }}> {horseId.pedigree}</Text>
+          </View>
+          <View
+            style={{
+              flex: 1,
+              // marginHorizontal: 120,
+              // backgroundColor: "yellow",
+            }}
+          >
+            <Text style={{ fontSize: 14, marginHorizontal: 5, color: "gray" }}>
+              Эзэн
+            </Text>
+            <Text style={{ fontSize: 20 }}> {horseId.owner}</Text>
+          </View>
+        </View>
+
+        <View
+          style={{
+            marginTop: 8,
+            // flex: 1,
+            flexDirection: "row",
+            // backgroundColor: "blue",
+            // paddingHorizontal: 10,
+            justifyContent: "space-between",
+          }}
+        >
+          <View style={{ flex: 1, paddingLeft: 20 }}>
+            <Text
+              style={{
+                fontSize: 14,
+                // fontFamily: "courier",
+                marginHorizontal: 5,
+                color: "gray",
+              }}
+            >
+              Нутаг
+            </Text>
+            <Text style={{ fontSize: 20 }}> {horseId.country}</Text>
+          </View>
+          <View style={{ flex: 1 }}>
+            <Text style={{ fontSize: 14, marginHorizontal: 5, color: "gray" }}>
+              Уяач
+            </Text>
+            <Text style={{ fontSize: 20 }}> {horseId.sire}</Text>
+          </View>
+        </View>
+        <View
+          style={{
+            marginTop: 8,
+            flexDirection: "row",
+            // flex: 1,
+            // backgroundColor: "blue",
+            // paddingHorizontal: 10,
+            // justifyContent: "space-between",
+          }}
+        >
+          {/* {horseId.rating && (
+            <View>
+              <Text
+                style={{ fontSize: 14, marginHorizontal: 5, color: "gray" }}
+              >
+                Үнэлгээ
+              </Text>
+              <Text style={{ fontSize: 20 }}>{horseId.rating}</Text>
+            </View>
+          )} */}
+          <View style={{ flex: 1, paddingLeft: 20 }}>
+            <Text style={{ fontSize: 14, marginHorizontal: 5, color: "gray" }}>
+              Үнэлгээ
+            </Text>
+            <Text style={{ fontSize: 20 }}>{horseId.rating}</Text>
+          </View>
+          <View style={{ flex: 1 }}>
+            <Text style={{ fontSize: 14, marginHorizontal: 5, color: "gray" }}>
+              Хүйс
+            </Text>
+            <Text style={{ fontSize: 20 }}> {horseId.gender}</Text>
+          </View>
+        </View>
+        <View
+          style={{
+            // backgroundColor: "pink",
+            marginVertical: 10,
+            marginHorizontal: 20,
+          }}
+        >
+          <View>
+            <Text style={{ fontSize: 14, color: "gray" }}> Мэдээлэл</Text>
+          </View>
+          <View>
+            <Text style={{ fontSize: 20 }}> {horseId.info}</Text>
+          </View>
+        </View>
       </View>
       <Button onPress={() => props.navigation.goBack()} title="Буцах" />
       {state.userRole === "admin" && (
