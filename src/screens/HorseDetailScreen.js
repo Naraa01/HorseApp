@@ -10,12 +10,22 @@ import {
 import React, { useEffect, useState, useLayoutEffect, useContext } from "react";
 import { Feather } from "@expo/vector-icons";
 import { url } from "../../Constants";
+import Comments from "../components/Comments";
 // import axios from "axios";
 
 import useHorse from "../hooks/useHorse";
 import UserContext from "../context/userContext";
 
+// import { useFonts } from "expo-font";
 const HorseDetailScreen = (props) => {
+  // const [loaded] = useFonts({
+  //   JosefinSansItalic: require("../../assets/fonts/JosefinSans-Italic.ttf"),
+  // });
+
+  // if (!loaded) {
+  //   return null;
+  // }
+
   // // console.log("--props navig --", props.navigation);
   // // console.log("--avig --", props.route.params);
 
@@ -160,6 +170,7 @@ const HorseDetailScreen = (props) => {
                 marginHorizontal: 5,
                 color: "gray",
                 // fontFamily: "JosefinSans-Italic",
+                fontFamily: "sans-serif-medium",
               }}
             >
               Эцэг
@@ -167,11 +178,27 @@ const HorseDetailScreen = (props) => {
             <Text style={{ fontSize: 20 }}> {horseId.father}</Text>
           </View>
           <View style={{ marginHorizontal: 10 }}>
-            <Text style={{ fontSize: 14, color: "gray" }}>Эх</Text>
+            <Text
+              style={{
+                fontSize: 14,
+                color: "gray",
+                fontFamily: "sans-serif-medium",
+              }}
+            >
+              Эх
+            </Text>
             <Text style={{ fontSize: 20 }}>{horseId.mother}</Text>
           </View>
           <View style={{ marginHorizontal: 10 }}>
-            <Text style={{ fontSize: 14, color: "gray" }}>Зүс</Text>
+            <Text
+              style={{
+                fontSize: 14,
+                color: "gray",
+                fontFamily: "sans-serif-medium",
+              }}
+            >
+              Зүс
+            </Text>
             <Text style={{ fontSize: 20 }}>{horseId.color}</Text>
           </View>
         </View>
@@ -192,7 +219,14 @@ const HorseDetailScreen = (props) => {
               // backgroundColor: "blue",
             }}
           >
-            <Text style={{ fontSize: 14, marginHorizontal: 5, color: "gray" }}>
+            <Text
+              style={{
+                fontSize: 14,
+                marginHorizontal: 5,
+                color: "gray",
+                fontFamily: "sans-serif-medium",
+              }}
+            >
               Угшил
             </Text>
             <Text style={{ fontSize: 20 }}> {horseId.pedigree}</Text>
@@ -202,9 +236,17 @@ const HorseDetailScreen = (props) => {
               flex: 1,
               // marginHorizontal: 120,
               // backgroundColor: "yellow",
+              fontFamily: "sans-serif-medium",
             }}
           >
-            <Text style={{ fontSize: 14, marginHorizontal: 5, color: "gray" }}>
+            <Text
+              style={{
+                fontSize: 14,
+                marginHorizontal: 5,
+                color: "gray",
+                fontFamily: "sans-serif-medium",
+              }}
+            >
               Эзэн
             </Text>
             <Text style={{ fontSize: 20 }}> {horseId.owner}</Text>
@@ -228,6 +270,7 @@ const HorseDetailScreen = (props) => {
                 // fontFamily: "courier",
                 marginHorizontal: 5,
                 color: "gray",
+                fontFamily: "sans-serif-medium",
               }}
             >
               Нутаг
@@ -235,7 +278,14 @@ const HorseDetailScreen = (props) => {
             <Text style={{ fontSize: 20 }}> {horseId.country}</Text>
           </View>
           <View style={{ flex: 1 }}>
-            <Text style={{ fontSize: 14, marginHorizontal: 5, color: "gray" }}>
+            <Text
+              style={{
+                fontSize: 14,
+                marginHorizontal: 5,
+                color: "gray",
+                fontFamily: "sans-serif-medium",
+              }}
+            >
               Уяач
             </Text>
             <Text style={{ fontSize: 20 }}> {horseId.sire}</Text>
@@ -262,13 +312,27 @@ const HorseDetailScreen = (props) => {
             </View>
           )} */}
           <View style={{ flex: 1, paddingLeft: 20 }}>
-            <Text style={{ fontSize: 14, marginHorizontal: 5, color: "gray" }}>
+            <Text
+              style={{
+                fontSize: 14,
+                marginHorizontal: 5,
+                color: "gray",
+                fontFamily: "sans-serif-medium",
+              }}
+            >
               Үнэлгээ
             </Text>
             <Text style={{ fontSize: 20 }}>{horseId.rating}</Text>
           </View>
           <View style={{ flex: 1 }}>
-            <Text style={{ fontSize: 14, marginHorizontal: 5, color: "gray" }}>
+            <Text
+              style={{
+                fontSize: 14,
+                marginHorizontal: 5,
+                color: "gray",
+                fontFamily: "sans-serif-medium",
+              }}
+            >
               Хүйс
             </Text>
             <Text style={{ fontSize: 20 }}> {horseId.gender}</Text>
@@ -282,7 +346,16 @@ const HorseDetailScreen = (props) => {
           }}
         >
           <View>
-            <Text style={{ fontSize: 14, color: "gray" }}> Мэдээлэл</Text>
+            <Text
+              style={{
+                fontSize: 14,
+                color: "gray",
+                fontFamily: "sans-serif-medium",
+              }}
+            >
+              {" "}
+              Мэдээлэл
+            </Text>
           </View>
           <View>
             <Text style={{ fontSize: 20 }}> {horseId.info}</Text>
@@ -295,6 +368,9 @@ const HorseDetailScreen = (props) => {
           <Button onPress={deleteOneHorse} title="Устгах" />
         </View>
       )}
+      <View>
+        <Comments />
+      </View>
     </ScrollView>
   );
 };

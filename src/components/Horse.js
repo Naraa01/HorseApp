@@ -8,7 +8,7 @@ import { useNavigation } from "@react-navigation/native"; //React context Api as
 
 const Horse = ({ data }) => {
   const navigation = useNavigation();
-  // console.log(data._id, "data ./.././././");
+  console.log(data, "data ./.././././");
   return (
     <TouchableOpacity
       onPress={() => navigation.navigate("Details", { horse: data })}
@@ -46,7 +46,7 @@ const Horse = ({ data }) => {
       )} */}
 
       <Image
-        style={{ width: 170, height: 130 }}
+        style={{ width: 200, height: 140, borderRadius: 15 }}
         source={{
           uri: `${url}/profile/` + data.photo,
           // uri: `http://192.168.1.94:5001/profile/` + data.photo,
@@ -55,6 +55,9 @@ const Horse = ({ data }) => {
 
       <Text style={{ marginLeft: 10, fontSize: 12, marginTop: 10 }}>
         {data.name}
+      </Text>
+      <Text style={{ marginLeft: 10, fontSize: 12, marginTop: 10 }}>
+        {data.owner}
       </Text>
       <Text
         style={{ marginLeft: 10, top: 5, fontSize: 12, fontWeight: "bold" }}

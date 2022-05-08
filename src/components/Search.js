@@ -27,7 +27,7 @@ const css = StyleSheet.create({
   searchPanel: {
     top: 15,
     height: 50,
-    backgroundColor: "#AF9D5A",
+    backgroundColor: "#d9d9d9",
     marginHorizontal: 20,
     borderWidth: 1,
     borderRadius: 10,

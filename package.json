@@ -37,10 +37,16 @@
     "react-native-web": "0.17.1",
     "react-navigation": "^4.4.4",
     "react-navigation-header-buttons": "^9.0.1",
-    "thousandify": "^1.0.3"
+    "thousandify": "^1.0.3",
+    "expo-font": "~10.0.4"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
+  },
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
   },
   "private": true
 }
