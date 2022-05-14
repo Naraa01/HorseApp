@@ -9,6 +9,7 @@ export const UserStore = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState(null);
   const [email, setEmail] = useState(null);
+  const [userId, setUserId] = useState(null);
   const [userName, setUserName] = useState(null);
   const [userRole, setUserRole] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -19,6 +20,7 @@ export const UserStore = (props) => {
     setIsLoggedIn(false);
     setToken(null);
     setEmail(null);
+    setUserId(null);
     setUserName(null);
     setUserRole(null);
   };
@@ -28,14 +30,16 @@ export const UserStore = (props) => {
       .post(`${url}/userM/login`, { name, password })
       // .post(`http://192.168.1.94:5001/userM/login`, { name, password })
       .then((res) => {
-        // console.log(res.data, "res data ");
-        // console.log(res.data.token, "res data token");
+        console.log("---- userContext res data", res.data);
+        console.log("---- userContext res data token", res.data.token);
+        console.log("---- userContext res data id", res.data.user._id);
 
         loginUserSuccesful(
           res.data.token,
           email,
           res.data.user.name,
-          res.data.user.role
+          res.data.user.role,
+          res.data.user._id
         );
       })
       .catch((err) => {
@@ -55,7 +59,7 @@ export const UserStore = (props) => {
       .then((res) => {
         console.log(res.data);
 
-        loginUserSuccesful(res.data.token, email, name, "user");
+        loginUserSuccesful(res.data.token, email, name, "user", uId);
 
         // AsyncStorage.setItem("user_token", res.data.token)
         //   .then((res) => {
@@ -79,16 +83,25 @@ export const UserStore = (props) => {
     console.log(error); //response - serverees irsen obekt
     setIsLoggedIn(false);
     setEmail(null);
+    setUserId(null);
     setUserName(null);
     setUserRole(null);
   };
 
-  const loginUserSuccesful = async (token, email, userName, userRole) => {
+  const loginUserSuccesful = async (
+    token,
+    email,
+    userName,
+    userRole,
+    userId
+  ) => {
+    // console.log()
     setToken(token);
     setEmail(email);
     setUserName(userName);
     setUserRole(userRole);
     setIsLoggedIn(true);
+    setUserId(userId);
 
     // AsyncStorage.setItem("user_token", token)
     //   .then((res) => {
@@ -103,8 +116,8 @@ export const UserStore = (props) => {
     try {
       await AsyncStorage.setItem(
         "user",
-        JSON.stringify({ token, userName, email, userRole }),
-        console.log("hadgalj chadlaa ")
+        JSON.stringify({ token, userName, email, userRole, userId }),
+        console.log("Login AsyncStorage success")
       );
       // await AsyncStorage.setItem("user_token", token);
       // await AsyncStorage.setItem("user_name", userName);
@@ -129,6 +142,8 @@ export const UserStore = (props) => {
         setUserRole,
         userName,
         setUserName,
+        userId,
+        setUserId,
         email,
         setEmail,
         isLoading,

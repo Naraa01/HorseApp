@@ -6,18 +6,25 @@ import {
   View,
   ScrollView,
   Alert,
+  TouchableOpacity,
+  LinearGradient,
+  TouchableRipple,
 } from "react-native";
 import React, { useEffect, useState, useLayoutEffect, useContext } from "react";
 import { Feather } from "@expo/vector-icons";
 import { url } from "../../Constants";
 import Comments from "../components/Comments";
 // import axios from "axios";
+// import { Button } from "@rneui/themed";
 
 import useHorse from "../hooks/useHorse";
 import UserContext from "../context/userContext";
+import MyButton from "../components/MyButton";
+import FlashMessage from "react-native-flash-message";
 
 // import { useFonts } from "expo-font";
 const HorseDetailScreen = (props) => {
+  const [message, setMessage] = useState(false);
   // const [loaded] = useFonts({
   //   JosefinSansItalic: require("../../assets/fonts/JosefinSans-Italic.ttf"),
   // });
@@ -123,7 +130,7 @@ const HorseDetailScreen = (props) => {
           }}
         />
       )} */}
-
+      {/* <FlashMessage position="top" /> */}
       <View style={{ margin: 30 }}>
         <Text style={{ flex: 1, fontSize: 16, color: "gray" }}>Нэр</Text>
         <Text style={{ flex: 1, fontSize: 25, fontWeight: "bold" }}>
@@ -362,14 +369,32 @@ const HorseDetailScreen = (props) => {
           </View>
         </View>
       </View>
-      <Button onPress={() => props.navigation.goBack()} title="Буцах" />
-      {state.userRole === "admin" && (
-        <View style={{ marginBottom: 100, top: 20 }}>
-          <Button onPress={deleteOneHorse} title="Устгах" />
-        </View>
-      )}
+      <View style={css.buttonView}>
+        <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={() => props.navigation.goBack()}
+          style={{ ...css.appButtonContainer, backgroundColor: "#34568b" }}
+        >
+          <Text style={css.appButtonText}>Буцах</Text>
+        </TouchableOpacity>
+
+        {/* <Button onPress={() => props.navigation.goBack()} title="Буцах" /> */}
+        {state.userRole === "admin" && (
+          <View //style={{ marginBottom: 100, top: 20 }}
+          >
+            {/* <Button onPress={deleteOneHorse} title="Устгах" /> */}
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={deleteOneHorse}
+              style={{ ...css.appButtonContainer, backgroundColor: "#bc243c" }}
+            >
+              <Text style={css.appButtonText}>Устгах</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+      </View>
       <View>
-        <Comments />
+        <Comments horseDetail={horseId} setMessage={setMessage} />
       </View>
     </ScrollView>
   );
@@ -377,4 +402,26 @@ const HorseDetailScreen = (props) => {
 
 export default HorseDetailScreen;
 
-const css = StyleSheet.create({});
+const css = StyleSheet.create({
+  buttonView: {
+    // flex: 1,
+    flexDirection: "row",
+    // backgroundColor: "yellow",
+  },
+  appButtonContainer: {
+    flex: 1,
+    elevation: 8,
+    width: 180,
+    borderRadius: 20,
+    marginHorizontal: 16,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+  },
+  appButtonText: {
+    fontSize: 18,
+    color: "#fff",
+    fontWeight: "bold",
+    alignSelf: "center",
+    textTransform: "uppercase",
+  },
+});

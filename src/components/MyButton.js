@@ -16,5 +16,7 @@ const css = StyleSheet.create({
   button: {
     marginVertical: 5,
     marginHorizontal: 20,
+    width: 150,
+    backgroundColor: "yellow",
   },
 });

@@ -72,10 +72,10 @@ const HorseAddScreen = (props) => {
       setSaving(true);
 
       // const filename = horse.photo.substring(horse.photo.lastIndexOf("/") + 1);
-      const fileUri = horse.photo;
-      const fileExt = fileUri.substring(fileUri.lastIndexOf(".") + 1);
-      horse.photo = `photo_${new Date().getTime()}.${fileExt}`;
-      console.log(fileExt, "fileExt");
+      // const fileUri = horse.photo;
+      // const fileExt = fileUri.substring(fileUri.lastIndexOf(".") + 1);
+      // horse.photo = `photo_${new Date().getTime()}.${fileExt}`;
+      // console.log(fileExt, "fileExt");
 
       // const filename = horse.photo.substring(horse.photo.lastIndexOf("/") + 1);
       // const fileExt = filename.substring(filename.lastIndexOf(".") + 1);
@@ -91,21 +91,21 @@ const HorseAddScreen = (props) => {
         .then((res) => {
           // console.log(res, "res");
           const newHorse = res.data.data;
-          const xhr = new XMLHttpRequest();
-          const data = FormData();
+          // const xhr = new XMLHttpRequest();
+          // const data = FormData();
 
-          data.append("file", {
-            uri: fileUri,
-            // uri: horse.photo,
-            type: `image/${fileExt}`,
-            name: horse.photo,
-            // name: filename,
-            // name: "photo.jpg",
-          });
-          xhr.open("PUT", `${url}/horsesM/${res.data.data._id}/upload-photo`);
-          xhr.send(data);
+          // data.append("file", {
+          //   uri: fileUri,
+          //   // uri: horse.photo,
+          //   type: `image/${fileExt}`,
+          //   name: horse.photo,
+          //   // name: filename,
+          //   // name: "photo.jpg",
+          // });
+          // xhr.open("PUT", `${url}/horsesM/${res.data.data._id}/upload-photo`);
+          // xhr.send(data);
 
-          console.log(`${url}/horse/${res.data.data._id}/upload-photo bro`);
+          // console.log(`${url}/horse/${res.data.data._id}/upload-photo bro`);
 
           props.navigation.navigate("Details", { horse: newHorse });
           console.log(res.data.data._id, "res.data.data._id");
@@ -125,47 +125,47 @@ const HorseAddScreen = (props) => {
     }
   };
 
-  useEffect(() => {
-    (async () => {
-      if (Platform.OS !== "web") {
-        const { status } = await ImagePicker.requestCameraPermissionsAsync();
-        if (status !== "granted") {
-          Alert.alert("Анхаар", "Утаснаас зураг оруулахыг зөвшөөрнө үү", [
-            {
-              text: "Тохиргоог нээх",
-              onPress: () => {
-                if (Platform.OS === "ios") {
-                  Linking.openURL("app-settings:"); // ios
-                  // } else {
-                  //   // android intent
-                  //   startActivityAsync(ActivityAction.APPLICATION_SETTINGS);
-                }
-              },
-            },
-            {
-              text: "OK",
-              onPress: () => {},
-            },
-          ]);
-        }
-      }
-    })();
-  }, []);
+  // useEffect(() => {
+  //   (async () => {
+  //     if (Platform.OS !== "web") {
+  //       const { status } = await ImagePicker.requestCameraPermissionsAsync();
+  //       if (status !== "granted") {
+  //         Alert.alert("Анхаар", "Утаснаас зураг оруулахыг зөвшөөрнө үү", [
+  //           {
+  //             text: "Тохиргоог нээх",
+  //             onPress: () => {
+  //               if (Platform.OS === "ios") {
+  //                 Linking.openURL("app-settings:"); // ios
+  //                 // } else {
+  //                 //   // android intent
+  //                 //   startActivityAsync(ActivityAction.APPLICATION_SETTINGS);
+  //               }
+  //             },
+  //           },
+  //           {
+  //             text: "OK",
+  //             onPress: () => {},
+  //           },
+  //         ]);
+  //       }
+  //     }
+  //   })();
+  // }, []);
 
-  const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
+  // const pickImage = async () => {
+  //   let result = await ImagePicker.launchImageLibraryAsync({
+  //     mediaTypes: ImagePicker.MediaTypeOptions.All,
+  //     allowsEditing: true,
+  //     aspect: [4, 3],
+  //     quality: 1,
+  //   });
 
-    console.log(result, "ene y");
+  //   console.log(result, "ene y");
 
-    if (!result.cancelled) {
-      setHorse({ ...horse, photo: result.uri });
-    }
-  };
+  //   if (!result.cancelled) {
+  //     setHorse({ ...horse, photo: result.uri });
+  //   }
+  // };
 
   const checkName = (text) => {
     // let isValid = false;
@@ -270,7 +270,7 @@ const HorseAddScreen = (props) => {
               onChangeText={checkName}
             />
 
-            <View
+            {/* <View
               style={{
                 flex: 1,
                 alignItems: "center",
@@ -284,7 +284,7 @@ const HorseAddScreen = (props) => {
                   style={{ width: 100, height: 100 }}
                 />
               )}
-            </View>
+            </View> */}
 
             <FormRadioButton
               label="Хүйс : "

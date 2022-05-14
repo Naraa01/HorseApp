@@ -2,7 +2,8 @@ import { randomHex } from "randomize-hex";
 const color = randomHex();
 
 // export const mainColor = color; //'#aaaa'
-export const mainColor = "#9383F8"; //'#aaaa'
+// export const mainColor = "#9383F8"; //'#aaaa' -- budeg ygaan
+export const mainColor = "#34568b"; //'#aaaa'
 export const textColor = "#05375a";
 export const lightColor = "#CAD5E2";
 export const randomColor = color; //'#aaaa'

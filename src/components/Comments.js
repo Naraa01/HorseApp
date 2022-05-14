@@ -6,29 +6,69 @@ import {
   TouchableOpacity,
   TouchableHighlight,
   TextInput,
+  Alert,
 } from "react-native";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import MyButton from "./MyButton";
 import { mainColor, randomColor, url } from "../../Constants";
 import axios from "axios";
+import UserContext from "../context/userContext";
+import { showMessage, hideMessage } from "react-native-flash-message";
+import FlashMessage from "react-native-flash-message";
 
-const Comments = () => {
+const Comments = (props) => {
   const [comments, setComments] = useState("");
+  const [data, setData] = useState();
+  const state = useContext(UserContext);
 
-  // useEffect(() => {
-  //   saveComment();
-  // }, [comments]);
+  useEffect(async () => {
+    // saveComment();
+    await getComments();
+  }, []);
 
   const checkComment = (value) => {
     setComments(value);
   };
 
   const saveComment = (body) => {
-    console.log(comments, "yu irjin body goot");
+    // if (!props.horseDetail._id) {
+    // }
+    const params = {
+      comment: comments,
+      userId: state.userId,
+      horseId: props.horseDetail._id,
+    };
     axios
-      .post(`${url}/comments`, comments)
+      .post(`${url}/comments`, params)
       .then((res) => {
         console.log(res, "comment res");
+        setComments(null);
+        showMessage({
+          message: "Амжилттай",
+          // description: "This is our second message",
+          type: "success",
+        });
+        props.setMessage(true);
+      })
+      .catch((e) => {
+        console.log(e, "comment error");
+      });
+  };
+
+  const getComments = () => {
+    axios
+      .get(`${url}/comments`)
+      .then((res) => {
+        console.log("comment res", res.data.data);
+        setData(res.data.data);
+        console.log("data -****************", data);
+        // setComments(null);
+        // showMessage({
+        //   message: "Амжилттай",
+        //   // description: "This is our second message",
+        //   type: "success",
+        // });
+        // props.setMessage(true);
       })
       .catch((e) => {
         console.log(e, "comment error");
@@ -48,6 +88,7 @@ const Comments = () => {
         paddingHorizontal: 25,
       }}
     >
+      <FlashMessage position="top" />
       <View style={{ flex: 1, flexDirection: "row" }}>
         <View>
           <Text style={{ fontSize: 20 }}>Comments</Text>
@@ -92,7 +133,6 @@ const Comments = () => {
           </Text>
         </View>
       </View>
-
       <View
         style={{
           height: 120,
@@ -118,20 +158,31 @@ const Comments = () => {
           }}
         />
         <TouchableOpacity
-          // onClick={saveComment}
+          activeOpacity={0.8}
           onPress={saveComment}
-          style={{ alignItems: "flex-end", paddingRight: 20, paddingTop: 13 }}
+          style={{
+            ...css.appButtonContainer,
+            backgroundColor: "#f1f1f1",
+          }}
         >
-          <Text style={{ justifyContent: "center" }}>Send</Text>
+          <Text style={css.appButtonText}>Send</Text>
         </TouchableOpacity>
       </View>
       {/* <Button style={css.button}>Hello world BUtton</Button> */}
-      <View style={css.button}>
-        {/* <Button color={"none"} title="Устгах" /> */}
+      <View>
+        {/* <Text>hello commenst</Text> */}
+        {data ? (
+          data.map((el) => {
+            return (
+              <View>
+                <Text>{el.comment}</Text>
+              </View>
+            );
+          })
+        ) : (
+          <Text>Comment Байхгүй</Text>
+        )}
       </View>
-      <TouchableOpacity style={css.button}>
-        <Text>hello</Text>
-      </TouchableOpacity>
     </View>
   );
 };
@@ -139,16 +190,35 @@ const Comments = () => {
 export default Comments;
 
 const css = StyleSheet.create({
-  button: {
-    alignItems: "center",
-    textShadowColor: "pink",
-    borderRadius: 6,
-    // position: "relative",
+  // button: {
+  //   alignItems: "center",
+  //   textShadowColor: "pink",
+  //   borderRadius: 6,
+  //   // position: "relative",
+  //   // flex: 1,
+  //   backgroundColor: "pink",
+  //   // justifyContent: "center",
+  //   width: "40%",
+  //   height: 20,
+  // },
+  appButtonContainer: {
     // flex: 1,
-    backgroundColor: "pink",
-    // justifyContent: "center",
-    width: "40%",
-    height: 20,
+    elevation: 8,
+    width: 70,
+    borderRadius: 20,
+    marginHorizontal: 16,
+    marginVertical: 5,
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    alignItems: "flex-end",
+    justifyContent: "center",
+  },
+  appButtonText: {
+    fontSize: 14,
+    color: "#34568b",
+    alignSelf: "center",
+    // fontWeight: "bold",
+    // textTransform: "uppercase",
   },
   // button: {
   //   alignItems: "center",

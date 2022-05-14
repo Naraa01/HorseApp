@@ -8,16 +8,17 @@ const SplashScreen = () => {
   useEffect(() => {
     AsyncStorage.getItem("user")
       .then((data) => {
-        console.log(data, "aaaaa data splash");
+        console.log("##### userInfo", data);
 
         if (data !== null) {
           const user = JSON.parse(data);
-          console.log(user, "------- user splash screen");
+          console.log("####### user userInfo", user);
           state.setToken(user.token);
           state.setEmail(user.email);
           state.setUserName(user.userName);
           state.setUserRole(user.userRole);
           state.setIsLoggedIn(true);
+          state.setUserId(user?._id);
         }
         state.setIsLoading(false);
       })

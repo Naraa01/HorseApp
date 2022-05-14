@@ -8,7 +8,6 @@ import { useNavigation } from "@react-navigation/native"; //React context Api as
 
 const Horse = ({ data }) => {
   const navigation = useNavigation();
-  console.log(data, "data ./.././././");
   return (
     <TouchableOpacity
       onPress={() => navigation.navigate("Details", { horse: data })}
