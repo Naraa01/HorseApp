@@ -59,9 +59,7 @@ const Comments = (props) => {
     axios
       .get(`${url}/comments`)
       .then((res) => {
-        console.log("comment res", res.data.data);
         setData(res.data.data);
-        console.log("data -****************", data);
         // setComments(null);
         // showMessage({
         //   message: "Амжилттай",
@@ -174,8 +172,48 @@ const Comments = (props) => {
         {data ? (
           data.map((el) => {
             return (
-              <View>
-                <Text>{el.comment}</Text>
+              <View style={css.commentsList}>
+                <View style={{ flexDirection: "row", paddingBottom: 5 }}>
+                  <View
+                    style={{
+                      flex: 1,
+                      flexDirection: "row",
+                      icon: "layers",
+                      // marginHorizontal: 10,
+                      // justifyContent: "flex-end",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text style={{ backgroundColor: "yellow" }}>
+                      {state.userName}
+                    </Text>
+                  </View>
+                  <View
+                  // style={{
+                  //   flex: 1,
+                  //   flexDirection: "row",
+                  //   justifyContent: "flex-end",
+                  //   marginHorizontal: 10,
+                  //   alignItems: "center",
+                  // }}
+                  >
+                    <Text
+                      style={{
+                        // flex: 1,
+                        backgroundColor: "pink",
+                        // justifyContent: "flex-end",
+                        // alignItems: "flex-end",
+                        // alignContent: "flex-end",
+                        // alignSelf: "flex-end",
+                      }}
+                    >
+                      2 days ago
+                    </Text>
+                  </View>
+                </View>
+                <View>
+                  <Text>{el.comment}</Text>
+                </View>
               </View>
             );
           })
@@ -201,6 +239,13 @@ const css = StyleSheet.create({
   //   width: "40%",
   //   height: 20,
   // },
+  commentsList: {
+    // marginVertical: 20,
+    paddingVertical: 20,
+    borderBottomColor: "#a8b0bd",
+    borderBottomWidth: 2,
+    // backgroundColor: "yellow",
+  },
   appButtonContainer: {
     // flex: 1,
     elevation: 8,
@@ -217,6 +262,7 @@ const css = StyleSheet.create({
     fontSize: 14,
     color: "#34568b",
     alignSelf: "center",
+
     // fontWeight: "bold",
     // textTransform: "uppercase",
   },
