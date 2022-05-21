@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   TouchableHighlight,
   TextInput,
+  Image,
   Alert,
 } from "react-native";
 import React, { useState, useEffect, useContext } from "react";
@@ -173,34 +174,45 @@ const Comments = (props) => {
           data.map((el) => {
             return (
               <View style={css.commentsList}>
-                <View style={{ flexDirection: "row", paddingBottom: 5 }}>
+                <View style={{ flexDirection: "row", paddingBottom: 20 }}>
                   <View
                     style={{
+                      height: "100%",
                       flex: 1,
                       flexDirection: "row",
                       icon: "layers",
                       // marginHorizontal: 10,
                       // justifyContent: "flex-end",
                       alignItems: "center",
+                      // backgroundColor: "yellow",
                     }}
                   >
-                    <Text style={{ backgroundColor: "yellow" }}>
-                      {state.userName}
-                    </Text>
+                    <Image
+                      style={{
+                        width: 40,
+                        height: 40,
+                        backgroundColor: "#dce0e6",
+                        borderRadius: 100,
+                        marginRight: 10,
+                      }}
+                      source={require("../../assets/people/male6_85212.png")}
+                    />
+                    <Text>{state.userName}</Text>
                   </View>
                   <View
-                  // style={{
-                  //   flex: 1,
-                  //   flexDirection: "row",
-                  //   justifyContent: "flex-end",
-                  //   marginHorizontal: 10,
-                  //   alignItems: "center",
-                  // }}
+                    style={{
+                      // flex: 1,
+                      flexDirection: "row",
+                      // justifyContent: "flex-end",
+                      // marginHorizontal: 10,
+                      alignItems: "center",
+                    }}
                   >
                     <Text
                       style={{
+                        color: "#9ea2a8",
                         // flex: 1,
-                        backgroundColor: "pink",
+                        // backgroundColor: "pink",
                         // justifyContent: "flex-end",
                         // alignItems: "flex-end",
                         // alignContent: "flex-end",

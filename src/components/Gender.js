@@ -6,11 +6,11 @@ const thousandify = require("thousandify"); //mungun temdegtiin myngatiin orongo
 
 import { useNavigation } from "@react-navigation/native"; //React context Api ashiglaj hiij bga
 
-const Horse = ({ data }) => {
+const Gender = ({ data }) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate("Details", { horse: data })}
+      onPress={() => navigation.navigate("GenderList", { horse: data })}
       // onPress={() => navigation.navigate("Detail", { id: data._id })} //parameter damjuulalt,, detail n id g huleej awah bolomjtoi blson
       style={{
         marginLeft: 8,
@@ -18,47 +18,28 @@ const Horse = ({ data }) => {
         // width: 100,
       }}
     >
-      {/* {data.photo.startsWith("/") ? (
-        <Image
-          style={{
-            width: "170",
-            height: 130,
-            //alignSelf: "center"
-          }}
-          source={{
-            // uri: `http://192.168.1.94:5001/profile/` + horseId.photo,
-            uri: `${url}/profile/` + data.photo,
-          }}
-        />
-      ) : (
-        <Image
-          style={{
-            width: "170",
-            height: 130,
-            //alignSelf: "center"
-          }}
-          source={{
-            // uri: `http://192.168.1.94:5001/profile/` + horseId.photo,
-            uri: url + "/upload/" + data.photo,
-          }}
-        />
-      )} */}
-
       <Image
-        style={{ width: 200, height: 140, borderRadius: 15 }}
+        style={{ width: 200, height: 200, borderRadius: 30 }}
         source={{
           uri: `${url}/profile/` + data.photo,
           // uri: `http://192.168.1.94:5001/profile/` + data.photo,
         }}
       />
 
-      <Text style={{ marginLeft: 10, fontSize: 14, marginTop: 10 }}>
+      <Text
+        style={{
+          marginLeft: 10,
+          fontSize: 16,
+          // fontFamily: "serif",
+          marginTop: 10,
+        }}
+      >
         {data.name}
       </Text>
       {/* <Text style={{ marginLeft: 10, fontSize: 12, marginTop: 10 }}>
         {data.owner}
-      </Text>
-      <Text
+      </Text> */}
+      {/* <Text
         style={{ marginLeft: 10, top: 5, fontSize: 12, fontWeight: "bold" }}
       >
         {data.author}
@@ -67,6 +48,6 @@ const Horse = ({ data }) => {
   );
 };
 
-export default Horse;
+export default Gender;
 
 const css = StyleSheet.create({});

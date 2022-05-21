@@ -20,6 +20,8 @@ import DrawerContent from "../components/DrawerContent";
 const Drawer = createDrawerNavigator();
 
 import UserContext from "../context/userContext";
+import GenderList from "../screens/GenderListScreen";
+import HorsesAll from "../components/HorsesAll";
 
 export default () => {
   const state = useContext(UserContext);
@@ -115,7 +117,7 @@ export default () => {
         name="Details"
         component={HorseDetailScreen}
         options={{
-          title: "Horse Дэлгэрэнгүй",
+          title: "Морь дэлгэрэнгүй",
           // headerBackTitleVisible: true, //iphone <back towchiin back ugiig alga bolgoh //only iphone yrunhiiduu ihenh n only iphone bololtoi
           // headerBackTitle: "Butsah", //Back gdg ugiig uurchluh
           // headerTruncatedBackTitle: "b", //bagtahgu bga uyd
@@ -131,6 +133,13 @@ export default () => {
           //   //   style={StyleSheet.absoluteFill}
           //   // />
           // ),
+        }}
+      />
+      <Drawer.Screen
+        name="GenderList"
+        component={GenderList}
+        options={{
+          title: "Морь",
         }}
       />
     </Drawer.Navigator>

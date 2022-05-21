@@ -23,6 +23,10 @@ import {
 import { Feather } from "@expo/vector-icons";
 import useGender from "../hooks/useGender";
 import UserContext from "../context/userContext";
+import CategoriesScreen from "./CategoriesScreen";
+import GenderPublicHorses from "../components/GenderPublicHorses";
+import GenderListScreen from "./GenderListScreen";
+import HorsesAll from "../components/HorsesAll";
 
 const HomeScreen = ({ navigation, route }) => {
   const [localSearchText, setLocalSearchText] = useState("");
@@ -69,7 +73,7 @@ const HomeScreen = ({ navigation, route }) => {
         <Spinner />
       ) : (
         <View>
-          <Search
+          {/* <Search
             value={localSearchText}
             onValueChange={setLocalSearchText}
             onFinishEnter={searchHorseFromServer}
@@ -78,10 +82,33 @@ const HomeScreen = ({ navigation, route }) => {
             <Text style={{ color: "red", marginHorizontal: 20, top: 20 }}>
               {errorMsg}
             </Text>
-          )}
+          )} */}
 
           <ScrollView style={{ marginTop: 20 }}>
-            {genders.map((el) => (
+            <CategoriesScreen
+              refresh={refresh}
+              setRefresh={setRefresh}
+              navigation={navigation}
+              searchLocalValue={localSearchText}
+              searchServerValue={serverSearchText}
+              // key={el._id}
+              // data={el}
+              style={{ marginVertical: 10 }}
+            />
+            <View style={{ marginTop: 25, paddingHorizontal: 20 }}>
+              <Text
+                style={{
+                  fontSize: 18,
+                  fontWeight: "bold",
+                  paddingHorizontal: 20,
+                }}
+              >
+                Бүгд
+              </Text>
+              <HorsesAll />
+            </View>
+
+            {/* {genders.map((el) => (
               <GenderHorsesList
                 refresh={refresh}
                 setRefresh={setRefresh}
@@ -92,7 +119,20 @@ const HomeScreen = ({ navigation, route }) => {
                 data={el}
                 style={{ marginVertical: 10 }}
               />
-            ))}
+            ))} */}
+
+            {/* {genders.map((el) => (
+              <GenderPublicHorses
+                refresh={refresh}
+                setRefresh={setRefresh}
+                navigation={navigation}
+                searchLocalValue={localSearchText}
+                searchServerValue={serverSearchText} //localSearchText ugchhin bol useg shiweh bolgond unshij bga
+                key={el._id}
+                data={el}
+                style={{ marginVertical: 10 }}
+              />
+            ))} */}
           </ScrollView>
         </View>
       )}

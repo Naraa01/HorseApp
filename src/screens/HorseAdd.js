@@ -34,12 +34,12 @@ const HorseAddScreen = (props) => {
     name: "Цагаан",
     father: "Бор халзан",
     mother: "Хонгор",
-    gender: "соёолон",
+    // gender: "соёолон",
     color: "цагаан",
     pedigree: "abc",
     country: "cde",
     owner: "Naraa",
-    photo: null,
+    photo: "no-photo.png",
     sire: "Naraa",
     info: "",
     status: "Одоо байгаа",
@@ -182,10 +182,10 @@ const HorseAddScreen = (props) => {
     setError({ ...error, mother: text.length > 100 });
     setHorse({ ...horse, mother: text });
   };
-  const checkGender = (text) => {
-    setError({ ...error, gender: text.length > 10 });
-    setHorse({ ...horse, gender: text });
-  };
+  // const checkGender = (text) => {
+  //   setError({ ...error, gender: text.length > 10 });
+  //   setHorse({ ...horse, gender: text });
+  // };
   const checkColor = (text) => {
     setError({ ...error, color: text.length > 20 });
     setHorse({ ...horse, color: text });
@@ -286,7 +286,7 @@ const HorseAddScreen = (props) => {
               )}
             </View> */}
 
-            <FormRadioButton
+            {/* <FormRadioButton
               label="Хүйс : "
               icon="layers"
               value={horse.gender}
@@ -304,7 +304,7 @@ const HorseAddScreen = (props) => {
               // onValueChange={(value, index) => {
               //   console.log(value), setHorse({ ...horse, genderId: value });
               // }}
-            />
+            /> */}
 
             <FormPicker
               label="Хүйс : "
@@ -345,7 +345,7 @@ const HorseAddScreen = (props) => {
               errorShow={error.mother}
               onChangeText={checkMother}
             />
-            <FormText
+            {/* <FormText
               label="Хүйс оруулна уу"
               placeholder="Хүйс"
               icon="edit"
@@ -353,7 +353,7 @@ const HorseAddScreen = (props) => {
               value={horse.gender}
               errorShow={error.gender}
               onChangeText={checkGender}
-            />
+            /> */}
             <FormText
               label="Зүс оруулна уу"
               placeholder="Зүс"
