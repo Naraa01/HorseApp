@@ -16,6 +16,7 @@ import axios from "axios";
 import UserContext from "../context/userContext";
 import { showMessage, hideMessage } from "react-native-flash-message";
 import FlashMessage from "react-native-flash-message";
+import moment from "moment";
 
 const Comments = (props) => {
   const [comments, setComments] = useState("");
@@ -25,7 +26,7 @@ const Comments = (props) => {
   useEffect(async () => {
     // saveComment();
     await getComments();
-  }, []);
+  }, [props.horseDetail._id]);
 
   const checkComment = (value) => {
     setComments(value);
@@ -38,6 +39,7 @@ const Comments = (props) => {
       comment: comments,
       userId: state.userId,
       horseId: props.horseDetail._id,
+      userName: state.userName,
     };
     axios
       .post(`${url}/comments`, params)
@@ -50,6 +52,7 @@ const Comments = (props) => {
           type: "success",
         });
         props.setMessage(true);
+        getComments();
       })
       .catch((e) => {
         console.log(e, "comment error");
@@ -58,7 +61,7 @@ const Comments = (props) => {
 
   const getComments = () => {
     axios
-      .get(`${url}/comments`)
+      .get(`${url}/horsesM/comments/${props.horseDetail._id}`)
       .then((res) => {
         setData(res.data.data);
         // setComments(null);
@@ -83,7 +86,7 @@ const Comments = (props) => {
         borderStyle: "solid",
         // borderWidth: 0.5,
         margin: 20,
-        paddingVertical: 15,
+        paddingVertical: 18,
         paddingHorizontal: 25,
       }}
     >
@@ -134,7 +137,7 @@ const Comments = (props) => {
       </View>
       <View
         style={{
-          height: 120,
+          height: 140,
           marginVertical: 12,
           borderWidth: 2,
           padding: 10,
@@ -156,20 +159,21 @@ const Comments = (props) => {
             // borderColor: mainColor,
           }}
         />
-        <TouchableOpacity
-          activeOpacity={0.8}
-          onPress={saveComment}
-          style={{
-            ...css.appButtonContainer,
-            backgroundColor: "#f1f1f1",
-          }}
-        >
-          <Text style={css.appButtonText}>Send</Text>
-        </TouchableOpacity>
+        <View style={{ alignItems: "flex-end" }}>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={saveComment}
+            style={{
+              ...css.appButtonContainer,
+              backgroundColor: "#f1f1f1",
+            }}
+          >
+            <Text style={css.appButtonText}>Send</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-      {/* <Button style={css.button}>Hello world BUtton</Button> */}
+
       <View>
-        {/* <Text>hello commenst</Text> */}
         {data ? (
           data.map((el) => {
             return (
@@ -197,7 +201,7 @@ const Comments = (props) => {
                       }}
                       source={require("../../assets/people/male6_85212.png")}
                     />
-                    <Text>{state.userName}</Text>
+                    <Text>{el.userName}</Text>
                   </View>
                   <View
                     style={{
@@ -219,7 +223,7 @@ const Comments = (props) => {
                         // alignSelf: "flex-end",
                       }}
                     >
-                      2 days ago
+                      {moment(el.createdAt).fromNow()}
                     </Text>
                   </View>
                 </View>
@@ -240,84 +244,29 @@ const Comments = (props) => {
 export default Comments;
 
 const css = StyleSheet.create({
-  // button: {
-  //   alignItems: "center",
-  //   textShadowColor: "pink",
-  //   borderRadius: 6,
-  //   // position: "relative",
-  //   // flex: 1,
-  //   backgroundColor: "pink",
-  //   // justifyContent: "center",
-  //   width: "40%",
-  //   height: 20,
-  // },
-  commentsList: {
-    // marginVertical: 20,
-    paddingVertical: 20,
-    borderBottomColor: "#a8b0bd",
-    borderBottomWidth: 2,
-    // backgroundColor: "yellow",
-  },
   appButtonContainer: {
     // flex: 1,
     elevation: 8,
-    width: 70,
+    width: 90,
     borderRadius: 20,
     marginHorizontal: 16,
-    marginVertical: 5,
+    marginVertical: 10,
     paddingVertical: 6,
     paddingHorizontal: 12,
-    alignItems: "flex-end",
+    // alignItems: "flex-end",
     justifyContent: "center",
   },
   appButtonText: {
     fontSize: 14,
     color: "#34568b",
     alignSelf: "center",
-
-    // fontWeight: "bold",
+    fontWeight: "bold",
     // textTransform: "uppercase",
   },
-  // button: {
-  //   alignItems: "center",
-  //   appearance: "none",
-  //   // backgroundImage: radial-gradient(100% 100% at '100%' '0', '#5adaff' '0', '#5468ff' '100%'),
-  //   border: 0,
-  //   borderRadius: 6,
-  //   // boxShadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset,
-  //   boxSizing: "border-box",
-  //   color: "#fff",
-  //   cursor: "pointer",
-  //   display: "inline-flex",
-  //   // font-family: "JetBrains Mono",monospace,
-  //   height: 48,
-  //   justifyContent: "center",
-  //   lineHeight: 1,
-  //   listStyle: "none",
-  //   overflow: "hidden",
-  //   paddingLeft: 16,
-  //   paddingRight: 16,
-  //   position: "relative",
-  //   textAlign: "left",
-  //   textDecoration: "none",
-  //   // transition: box-shadow, .15,transform, .15,
-  //   userSelect: "none",
-  //   webkitUserSelect: "none",
-  //   touchAction: "manipulation",
-  //   whiteSpace: "nowrap",
-  //   willChange: "box-shadow",
-  //   // transform,
-  //   fontSize: 18,
-  // },
-  // // button:focus {
-  // //   box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
-  // // }
-  // // .button-29:hover {
-  // //   box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
-  // //   transform: translateY(-2px);
-  // // }
-  // // .button-29:active {
-  // //   box-shadow: #3c4fe0 0 3px 7px inset;
-  // //   transform: translateY(2px);
-  // // }
+  commentsList: {
+    // marginVertical: 20,
+    paddingVertical: 20,
+    borderBottomColor: "#a8b0bd",
+    borderBottomWidth: 2,
+  },
 });

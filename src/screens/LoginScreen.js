@@ -4,7 +4,14 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 // import axios from "axios";
 
 // 3dagch comp
-import { View, Text, Image, StyleSheet, Alert } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  Alert,
+  TouchableOpacity,
+} from "react-native";
 
 //Uuriin bichsen comp
 import MyButton from "../components/MyButton";
@@ -80,64 +87,78 @@ export default function ({ navigation, route }) {
   return (
     <View>
       <Image
-        style={{ width: "100%", height: "32%" }}
+        style={{ width: "100%", height: "40%" }}
         source={require("../../assets/img/horse0308.webp")} // zurgiin bairshil
       />
+      <View style={{ marginTop: "auto" }}>
+        <Text style={{ textAlign: "center", fontSize: 22, marginVertical: 15 }}>
+          Нэвтрэх
+        </Text>
 
-      <Text style={{ textAlign: "center", fontSize: 20, marginTop: 10 }}>
-        Login
-      </Text>
+        {error && ( //error deer anhnii utga "" baihiin bol Text hooson bn gdg c ymu aldaa zaagaad bn,, null bolgojiij ajillana // uuruu bol const [error, setError] = useState(null); iim bn
+          <Text style={{ color: "red", textAlign: "center" }}>{error}</Text>
+        )}
 
-      {error && ( //error deer anhnii utga "" baihiin bol Text hooson bn gdg c ymu aldaa zaagaad bn,, null bolgojiij ajillana // uuruu bol const [error, setError] = useState(null); iim bn
-        <Text style={{ color: "red", textAlign: "center" }}>{error}</Text>
-      )}
-
-      {/* <TextInput
+        {/* <TextInput
         //value="hello text input"
         children="aaa" //children gj props bdg,, children n react iin tusgai comp
       /> */}
 
-      <MyInput
-        //keyboardType="email-address"
-        placeholder="Та нэрээ оруулна уу?"
-        onChangeText={setName} //uurchlugduh bolgond setName ruu oruulna
-        value={name}
-      />
-      <MyInput
-        secureTextEntry={true}
-        style={css.inputField}
-        placeholder="Нууц үгээ оруулна уу"
-        onChangeText={setPassword} //onChangePhone n end bichigdssen uchir asuudalgv urgejline
-        value={password}
-      />
+        <View style={css.inputView}>
+          <MyInput
+            //keyboardType="email-address"
+            placeholder="Та нэрээ оруулна уу?"
+            onChangeText={setName} //uurchlugduh bolgond setName ruu oruulna
+            value={name}
+          />
+          <MyInput
+            secureTextEntry={true}
+            style={css.inputField}
+            placeholder="Нууц үгээ оруулна уу"
+            onChangeText={setPassword} //onChangePhone n end bichigdssen uchir asuudalgv urgejline
+            value={password}
+          />
+        </View>
 
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-evenly",
-          marginTop: 10,
-        }}
-      >
-        <MyButton title1="Буцах" onPress1={() => navigation.goBack()} />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+            marginTop: 10,
+          }}
+        >
+          {/* <MyButton title1="Буцах" onPress1={() => navigation.goBack()} />
         <MyButton
           title1="Нэвтрэх"
-          // damjih props uud
-          onPress1={loginHandler} //zgr ingeed ajillahgu MyButton deeree props oor awjiij ajillana
-          //button deer darahad yahiig ene login delgets buyu etseg n helj ugnu, MyButton helehgu
+                    onPress1={loginHandler} 
+        /> */}
 
-          // odoogoor style= {{}} hiiwel huleej awahgu // props oor style MyButton awsan
-          //style={{ marginHorizontal: 20 }}
-        />
-
-        {/* <MyButton title1="List" onPress1={() => navigation.navigate("List")} /> */}
-
-        {/* <MyButton>// baij bolno</MyButton> */}
+          <View style={css.buttonView}>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => navigation.goBack()}
+              style={{ ...css.appButtonContainer, backgroundColor: "#34568b" }}
+            >
+              <Text style={css.appButtonText}>Буцах</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={loginHandler}
+              style={{ ...css.appButtonContainer, backgroundColor: "#bc243c" }}
+            >
+              <Text style={css.appButtonText}>Нэвтрэх</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
     </View>
   );
 }
 
 const css = StyleSheet.create({
+  inputView: {
+    marginHorizontal: 30,
+  },
   inputField: {
     borderBottomColor: "green",
     borderBottomWidth: 1,
@@ -149,4 +170,26 @@ const css = StyleSheet.create({
   // button: {
   //   marginVertical: 5,
   // },
+  buttonView: {
+    flex: 1,
+    flexDirection: "row",
+    marginTop: 30,
+    justifyContent: "center",
+  },
+  appButtonContainer: {
+    // flex: 1,
+    elevation: 10,
+    width: 100,
+    borderRadius: 20,
+    marginHorizontal: 16,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+  },
+  appButtonText: {
+    fontSize: 12,
+    color: "#fff",
+    fontWeight: "bold",
+    alignSelf: "center",
+    textTransform: "uppercase",
+  },
 });

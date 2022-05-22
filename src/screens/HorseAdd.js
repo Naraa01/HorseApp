@@ -9,6 +9,7 @@ import {
   Platform,
   Button,
   Image,
+  TouchableOpacity,
 } from "react-native";
 import React, { useState, useEffect, useContext } from "react";
 import { mainColor, lightColor, url } from "../../Constants";
@@ -39,7 +40,7 @@ const HorseAddScreen = (props) => {
     pedigree: "abc",
     country: "cde",
     owner: "Naraa",
-    photo: "no-photo.png",
+    photo: "no-horse.png",
     sire: "Naraa",
     info: "",
     status: "Одоо байгаа",
@@ -418,7 +419,7 @@ const HorseAddScreen = (props) => {
               onValueChange={toggleStatus}
             />
 
-            <View
+            {/* <View
               style={{
                 flexDirection: "row",
                 justifyContent: "space-evenly",
@@ -430,6 +431,28 @@ const HorseAddScreen = (props) => {
                 onPress1={() => props.navigation.goBack()}
               />
               <MyButton title1="Бүртгэх" onPress1={saveHorse} />
+            </View> */}
+            <View style={css.buttonView}>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() => props.navigation.goBack()}
+                style={{
+                  ...css.appButtonContainer,
+                  backgroundColor: "#34568b",
+                }}
+              >
+                <Text style={css.appButtonText}>Буцах</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={saveHorse}
+                style={{
+                  ...css.appButtonContainer,
+                  backgroundColor: "#bc243c",
+                }}
+              >
+                <Text style={css.appButtonText}>Нэвтрэх</Text>
+              </TouchableOpacity>
             </View>
           </ScrollView>
         )}
@@ -440,4 +463,41 @@ const HorseAddScreen = (props) => {
 
 export default HorseAddScreen;
 
-const styles = StyleSheet.create({});
+const css = StyleSheet.create({
+  inputView: {
+    marginHorizontal: 30,
+  },
+  inputField: {
+    borderBottomColor: "green",
+    borderBottomWidth: 1,
+    marginHorizontal: 20, //baruun zuun talaas
+    // marginVertical: 10,
+    padding: 10,
+    //backgroundColor: "green",
+  },
+  // button: {
+  //   marginVertical: 5,
+  // },
+  buttonView: {
+    flex: 1,
+    flexDirection: "row",
+    marginTop: 30,
+    justifyContent: "center",
+  },
+  appButtonContainer: {
+    // flex: 1,
+    elevation: 10,
+    width: 100,
+    borderRadius: 20,
+    marginHorizontal: 16,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+  },
+  appButtonText: {
+    fontSize: 12,
+    color: "#fff",
+    fontWeight: "bold",
+    alignSelf: "center",
+    textTransform: "uppercase",
+  },
+});

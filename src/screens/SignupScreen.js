@@ -4,7 +4,14 @@ import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // 3dagch comp
-import { View, Text, Image, StyleSheet, Alert } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  Alert,
+  TouchableOpacity,
+} from "react-native";
 
 //Uuriin bichsen comp
 import MyButton from "../components/MyButton";
@@ -40,57 +47,126 @@ export default function ({ navigation, route }) {
   return (
     <View>
       <Image
-        style={{ width: "100%", height: "32%" }}
+        style={{ width: "100%", height: "40%" }}
         source={require("../../assets/img/horse0308.webp")}
       />
 
-      <Text style={{ textAlign: "center", fontSize: 20, marginTop: 10 }}>
-        Sign Up
-      </Text>
+      <View style={{ marginTop: "auto" }}>
+        <Text style={{ textAlign: "center", fontSize: 20, marginVertical: 15 }}>
+          Бүртгүүлэх
+        </Text>
 
-      {error && (
-        <Text style={{ color: "red", textAlign: "center" }}>{error}</Text>
-      )}
+        {error && (
+          <Text style={{ color: "red", textAlign: "center" }}>{error}</Text>
+        )}
+        <View style={css.inputView}>
+          <MyInput
+            value={name}
+            placeholder="Та нэрээ оруулна уу?"
+            onChangeText={setName}
+          />
+          <MyInput
+            value={email}
+            keyboardType="email-address"
+            placeholder="Та и-мэйл хаягаа оруулна уу?"
+            onChangeText={setEmail}
+          />
+          <MyInput
+            value={password1}
+            secureTextEntry={true}
+            placeholder="Нууц үг"
+            onChangeText={setPassword1} //onChangePhone n end bichigdssen uchir asuudalgv urgejline
+          />
+          <MyInput
+            value={password2}
+            secureTextEntry={true}
+            placeholder="Нууц үг давтах"
+            onChangeText={setPassword2}
+          />
+        </View>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+            marginTop: 10,
+          }}
+        >
+          {/* <MyButton title1="Буцах!!!!!" onPress1={() => navigation.goBack()} />
+        <MyButton title1="Бүртгүүлэх!!" onPress1={signupHandler} /> */}
 
-      <MyInput
-        value={name}
-        placeholder="Та нэрээ оруулна уу?"
-        onChangeText={setName}
-      />
-      <MyInput
-        value={email}
-        keyboardType="email-address"
-        placeholder="Та и-мэйл хаягаа оруулна уу?"
-        onChangeText={setEmail}
-      />
-      <MyInput
-        value={password1}
-        secureTextEntry={true}
-        placeholder="Нууц үг"
-        onChangeText={setPassword1} //onChangePhone n end bichigdssen uchir asuudalgv urgejline
-      />
-      <MyInput
-        value={password2}
-        secureTextEntry={true}
-        placeholder="Нууц үг давтах"
-        onChangeText={setPassword2}
-      />
-
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-evenly",
-          marginTop: 10,
-        }}
-      >
-        <MyButton title1="Буцах!!!!!" onPress1={() => navigation.goBack()} />
-        <MyButton title1="Бүртгүүлэх!!" onPress1={signupHandler} />
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-evenly",
+              marginTop: 10,
+            }}
+          >
+            <View style={css.buttonView}>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() => navigation.goBack()}
+                style={{
+                  ...css.appButtonContainer,
+                  backgroundColor: "#34568b",
+                }}
+              >
+                <Text style={css.appButtonText}>Буцах</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={signupHandler}
+                style={{
+                  ...css.appButtonContainer,
+                  backgroundColor: "#bc243c",
+                }}
+              >
+                <Text style={css.appButtonText}>Бүртгүүлэх</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
       </View>
     </View>
   );
 }
 
 const css = StyleSheet.create({
+  inputView: {
+    marginHorizontal: 30,
+  },
+  inputField: {
+    borderBottomColor: "green",
+    borderBottomWidth: 1,
+    marginHorizontal: 20, //baruun zuun talaas
+    // marginVertical: 10,
+    padding: 10,
+    //backgroundColor: "green",
+  },
+  // button: {
+  //   marginVertical: 5,
+  // },
+  buttonView: {
+    flex: 1,
+    flexDirection: "row",
+    marginTop: 30,
+    justifyContent: "center",
+  },
+  appButtonContainer: {
+    // flex: 1,
+    elevation: 10,
+    width: 110,
+    borderRadius: 20,
+    marginHorizontal: 16,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+  },
+  appButtonText: {
+    fontSize: 12,
+    color: "#fff",
+    fontWeight: "bold",
+    alignSelf: "center",
+    textTransform: "uppercase",
+  },
   // inputField: {
   //   borderBottomColor: "green",
   //   borderBottomWidth: 1,

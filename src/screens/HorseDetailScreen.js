@@ -404,21 +404,21 @@ export default HorseDetailScreen;
 
 const css = StyleSheet.create({
   buttonView: {
-    // flex: 1,
+    flex: 1,
     flexDirection: "row",
-    // backgroundColor: "yellow",
+    justifyContent: "center",
   },
   appButtonContainer: {
-    flex: 1,
+    // flex: 1,
     elevation: 8,
-    width: 180,
+    width: 100,
     borderRadius: 20,
     marginHorizontal: 16,
     paddingVertical: 10,
     paddingHorizontal: 12,
   },
   appButtonText: {
-    fontSize: 18,
+    fontSize: 12,
     color: "#fff",
     fontWeight: "bold",
     alignSelf: "center",
