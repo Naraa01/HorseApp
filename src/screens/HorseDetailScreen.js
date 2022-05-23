@@ -9,9 +9,12 @@ import {
   TouchableOpacity,
   LinearGradient,
   TouchableRipple,
+  SafeAreaView,
+  Label,
+  TextInput,
 } from "react-native";
 import React, { useEffect, useState, useLayoutEffect, useContext } from "react";
-import { Feather } from "@expo/vector-icons";
+import { Feather, FontAwesome } from "@expo/vector-icons";
 import { url } from "../../Constants";
 import Comments from "../components/Comments";
 // import axios from "axios";
@@ -21,10 +24,22 @@ import useHorse from "../hooks/useHorse";
 import UserContext from "../context/userContext";
 import MyButton from "../components/MyButton";
 import FlashMessage from "react-native-flash-message";
-
+import { RadioButton } from "react-native-paper";
+import axios from "axios";
 // import { useFonts } from "expo-font";
+
 const HorseDetailScreen = (props) => {
   const [message, setMessage] = useState(false);
+  const [rating, setRating] = React.useState(null);
+  const [updateRatingData, setUpdateRatingData] = React.useState(null);
+
+  const state = useContext(UserContext);
+  const horseId = props.route.params.horse;
+  const checkRating = updateRatingData?.rating
+    ? updateRatingData.rating
+    : horseId.rating;
+  console.log('" horseId ----"', horseId);
+
   // const [loaded] = useFonts({
   //   JosefinSansItalic: require("../../assets/fonts/JosefinSans-Italic.ttf"),
   // });
@@ -42,15 +57,30 @@ const HorseDetailScreen = (props) => {
 
   const [horse, error, deleteHorse] = useHorse(props.route.params.horse._id);
 
-  // console.log(id, "id ------ horsedetailscreen");
-  // console.log(props.route.params.horse._id, "horse props route");
-  // console.log(horse, "horse");
-
-  const state = useContext(UserContext);
-  // console.log(state, "state context");
-  // console.log(props.data, "props route");
-  const horseId = props.route.params.horse;
-  // console.log(horseId, " horseId ----");
+  const RatingSave = (value) => {
+    let body = { value };
+    // console.log("value value vlaue", value);
+    axios
+      .put(`${url}/horsesM/update/${props.route.params.horse._id}`, body)
+      .then((res) => {
+        // console.log("res.data.data", res.data.data);
+        setUpdateRatingData(res.data.data);
+      })
+      .catch((e) => {
+        console.log("eeeeee", e);
+        if (e.response) {
+          // console.log(e.response.data.error.message);
+          // setServerError(e.response.data.error.message);
+        }
+        // else setServerError(e.message);
+      });
+    // .finally(() => {
+    //   setSaving(false);
+    // });
+    // } else {
+    //   Alert.alert("Хүйс сонгоно уу??");
+    // }
+  };
 
   // useLayoutEffect(() => {
   //   // props.navigation.setOptions({
@@ -329,7 +359,38 @@ const HorseDetailScreen = (props) => {
             >
               Үнэлгээ
             </Text>
-            <Text style={{ fontSize: 20 }}>{horseId.rating}</Text>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {[...Array(5)].map((star, i, number) => {
+                const ratingValue = i + 1;
+                return (
+                  <TouchableOpacity
+                    onPress={() => {
+                      setRating(ratingValue);
+                      RatingSave(ratingValue);
+                    }}
+                    // onPress={() => (
+                    //   setRating(ratingValue), console.log("aaaaaabbbba", ratingValue)
+                    // )}
+                  >
+                    <FontAwesome
+                      name="star"
+                      color={ratingValue <= checkRating ? "yellow" : "black"}
+                      size={20}
+                      style={{ margin: 1 }}
+                    />
+                  </TouchableOpacity>
+                  // </Label>
+                );
+              })}
+            </View>
+            {/* <Text style={{ fontSize: 20 }}>{horseId.rating}</Text> */}
           </View>
           <View style={{ flex: 1 }}>
             <Text
@@ -424,4 +485,10 @@ const css = StyleSheet.create({
     alignSelf: "center",
     textTransform: "uppercase",
   },
+  customRatingBarStyle: {
+    justifyContent: "center",
+    flexDirection: "row",
+    marginTop: 30,
+  },
+  starImgStyle: { width: 40, height: 40, resizeMode: "cover" },
 });

@@ -7,11 +7,13 @@ import {
   FlatList,
   ScrollView,
 } from "react-native";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { url } from "../../Constants";
 import { useNavigation } from "@react-navigation/native"; //React context Api ashiglaj hiij bga
 import useHorses from "../hooks/useHorses";
 import Spinner from "../components/Spinner";
+import useGender from "../hooks/useGender";
+import Search from "../components/Search";
 
 const thousandify = require("thousandify"); //mungun temdegtiin myngatiin orongoor , tawina
 
@@ -21,23 +23,51 @@ const GenderListScreen = (props) => {
     props.refresh,
     props.setRefresh
   );
+  const [localSearchText, setLocalSearchText] = useState("");
+  const [serverSearchText, setServerSearchText] = useState("");
+  const [refresh, setRefresh] = useState(false);
+  const [genders, errorMsg] = useGender();
 
-  console.log("horses ---> ", horses);
-  console.log("props ---> ", props);
+  const searchHorseFromServer = () => {
+    console.log(`Serveress ${localSearchText} utgaar haij ehellee...`);
+    setServerSearchText(localSearchText);
+    console.log(serverSearchText);
+  };
+
+  // useEffect(() => {
+  //   filteredHorse;
+  // }, [horses]);
+
+  // console.log("horses ---> ", horses);
+  // console.log("props ---> ", props);
   const navigation = useNavigation();
 
-  // const filteredHorse = horses.filter(
-  //   (el) => el.name.toLowerCase().includes(props.searchLocalValue.toLowerCase()) //toLowerCase() bugdiin jijgeer hmgu haina
-  // );
+  const filteredHorse = horses.filter(
+    (el) => el.name.toLowerCase().includes(serverSearchText.toLowerCase()) //toLowerCase() bugdiin jijgeer hmgu haina
+  );
+  // console.log("filteredHorsefilteredHorse", filteredHorse);
+  const dataPhoto = filteredHorse.photo ? filteredHorse.photo : horses.photo;
+  const dataName = filteredHorse.name ? filteredHorse.name : horses.name;
+
   return (
     <View>
       {loading ? (
         <Spinner />
       ) : (
         <View>
-          <ScrollView>
-            {horses.map((data) => {
-              console.log("data ====> .>> >> >>> ", data);
+          <Search
+            value={localSearchText}
+            onValueChange={setLocalSearchText}
+            onFinishEnter={searchHorseFromServer}
+          />
+          {errorMsg && ( //errorMsg bhin bol Text ajillahgu
+            <Text style={{ color: "red", marginHorizontal: 20, top: 20 }}>
+              {errorMsg}
+            </Text>
+          )}
+          <ScrollView style={{ marginTop: 20, marginBottom: 100 }}>
+            {filteredHorse.map((data) => {
+              console.log("data ====> .>> >> >>> ", data.photo);
               return (
                 <TouchableOpacity
                   onPress={() =>
@@ -59,7 +89,13 @@ const GenderListScreen = (props) => {
                   />
                   <View style={{ paddingHorizontal: 20 }}>
                     <Text style={{ fontSize: 14, color: "gray" }}>Нэр</Text>
-                    <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+                    <Text
+                      style={{
+                        fontSize: 20,
+                        fontWeight: "bold",
+                        width: 200,
+                      }}
+                    >
                       {data.name}
                     </Text>
                   </View>

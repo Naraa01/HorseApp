@@ -451,7 +451,7 @@ const HorseAddScreen = (props) => {
                   backgroundColor: "#bc243c",
                 }}
               >
-                <Text style={css.appButtonText}>Нэвтрэх</Text>
+                <Text style={css.appButtonText}>Бүртгэх</Text>
               </TouchableOpacity>
             </View>
           </ScrollView>
