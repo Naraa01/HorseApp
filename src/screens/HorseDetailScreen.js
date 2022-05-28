@@ -32,6 +32,7 @@ import Tree from "../components/Tree";
 const HorseDetailScreen = (props) => {
   const [message, setMessage] = useState(false);
   const [rating, setRating] = React.useState(null);
+  const [treeData, setTreeData] = useState(null);
   const [updateRatingData, setUpdateRatingData] = React.useState(null);
 
   const state = useContext(UserContext);
@@ -48,19 +49,17 @@ const HorseDetailScreen = (props) => {
         // `http://192.168.1.94:5001//horsesM/${horseId}`
       );
       // const result = await axios.get(`${url}/horsesM/${horseId}`);
-
-      console.log(result.data.data, "result.data.data");
-      // setHorse(result.data.data);
+      setTreeData(result.data.data);
       // setError(null);
     } catch (err) {
       // setError(err.message);
-      console.log("load Heorse uuu ??? ", err.message);
+      console.log("load Horse error ", err.message);
     }
   };
 
   useEffect(() => {
     loadHorse();
-  }, []);
+  }, [horseId._id]);
 
   // const [loaded] = useFonts({
   //   JosefinSansItalic: require("../../assets/fonts/JosefinSans-Italic.ttf"),
@@ -235,7 +234,9 @@ const HorseDetailScreen = (props) => {
             >
               Эцэг
             </Text>
-            <Text style={{ fontSize: 20 }}> {horseId.father}</Text>
+            <TouchableOpacity>
+              <Text style={{ fontSize: 20 }}> {treeData?.fatherId?.name}</Text>
+            </TouchableOpacity>
           </View>
           <View style={{ marginHorizontal: 10 }}>
             <Text
@@ -247,7 +248,7 @@ const HorseDetailScreen = (props) => {
             >
               Эх
             </Text>
-            <Text style={{ fontSize: 20 }}>{horseId.mother}</Text>
+            <Text style={{ fontSize: 20 }}>{treeData?.motherId?.name}</Text>
           </View>
           <View style={{ marginHorizontal: 10 }}>
             <Text
@@ -477,11 +478,11 @@ const HorseDetailScreen = (props) => {
           </View>
         )}
       </View>
+
       <View>
-        <TouchableOpacity>
-          <Tree />
-        </TouchableOpacity>
+        <Tree horseId={treeData?._id} />
       </View>
+
       <View>
         <Comments horseDetail={horseId} setMessage={setMessage} />
       </View>
