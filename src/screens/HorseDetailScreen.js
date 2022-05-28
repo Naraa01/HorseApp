@@ -26,6 +26,7 @@ import MyButton from "../components/MyButton";
 import FlashMessage from "react-native-flash-message";
 import { RadioButton } from "react-native-paper";
 import axios from "axios";
+import Tree from "../components/Tree";
 // import { useFonts } from "expo-font";
 
 const HorseDetailScreen = (props) => {
@@ -38,7 +39,28 @@ const HorseDetailScreen = (props) => {
   const checkRating = updateRatingData?.rating
     ? updateRatingData.rating
     : horseId.rating;
-  console.log('" horseId ----"', horseId);
+  // console.log('" horseId ----"', horseId);
+
+  const loadHorse = async () => {
+    try {
+      const result = await axios.get(
+        `${url}/horsesM/${horseId._id}`
+        // `http://192.168.1.94:5001//horsesM/${horseId}`
+      );
+      // const result = await axios.get(`${url}/horsesM/${horseId}`);
+
+      console.log(result.data.data, "result.data.data");
+      // setHorse(result.data.data);
+      // setError(null);
+    } catch (err) {
+      // setError(err.message);
+      console.log("load Heorse uuu ??? ", err.message);
+    }
+  };
+
+  useEffect(() => {
+    loadHorse();
+  }, []);
 
   // const [loaded] = useFonts({
   //   JosefinSansItalic: require("../../assets/fonts/JosefinSans-Italic.ttf"),
@@ -56,6 +78,7 @@ const HorseDetailScreen = (props) => {
   const { id } = props.route.params.horse; //
 
   const [horse, error, deleteHorse] = useHorse(props.route.params.horse._id);
+  console.log("hortse ----- >> ", horse, "<<---");
 
   const RatingSave = (value) => {
     let body = { value };
@@ -453,6 +476,11 @@ const HorseDetailScreen = (props) => {
             </TouchableOpacity>
           </View>
         )}
+      </View>
+      <View>
+        <TouchableOpacity>
+          <Tree />
+        </TouchableOpacity>
       </View>
       <View>
         <Comments horseDetail={horseId} setMessage={setMessage} />
