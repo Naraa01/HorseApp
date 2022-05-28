@@ -265,7 +265,7 @@ const HorseAddScreen = (props) => {
               label="Нэр оруулна уу"
               placeholder="Нэр"
               icon="book"
-              errorText="Нэр алдаатай байна. 4-100"
+              errorText="Нэр алдаатай байна. 3-100"
               errorShow={error.name}
               value={horse.name}
               onChangeText={checkName}

@@ -426,7 +426,7 @@ const HorseDetailScreen = (props) => {
             </Text>
           </View>
           <View>
-            <Text style={{ fontSize: 20 }}> {horseId.info}</Text>
+            <Text style={{ fontSize: 14 }}> {horseId.info}</Text>
           </View>
         </View>
       </View>

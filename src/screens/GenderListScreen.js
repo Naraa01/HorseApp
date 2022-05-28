@@ -25,7 +25,7 @@ const GenderListScreen = (props) => {
   );
   const [localSearchText, setLocalSearchText] = useState("");
   const [serverSearchText, setServerSearchText] = useState("");
-  const [refresh, setRefresh] = useState(false);
+  // const [refresh, setRefresh] = useState(false);
   const [genders, errorMsg] = useGender();
 
   const searchHorseFromServer = () => {
@@ -35,7 +35,8 @@ const GenderListScreen = (props) => {
   };
 
   // useEffect(() => {
-  //   filteredHorse;
+  //   props.setRefresh(!props.refresh);
+  //   // filteredHorse;
   // }, [horses]);
 
   // console.log("horses ---> ", horses);
