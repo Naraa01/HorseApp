@@ -2,9 +2,11 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { url } from "../../Constants";
 import axios from "axios";
+import { useNavigation } from "@react-navigation/native";
 
 const Tree = (props) => {
   const [treeData, setTreeData] = useState(null);
+  const navigation = useNavigation();
   // 'grid-template-rows: repeat(6, minmax(0, 1fr))'
 
   console.log("zuw data irjiniu ---->>>", treeData);
@@ -41,138 +43,374 @@ const Tree = (props) => {
         <View style={css.colBig}>
           {/* etseg, eh */}
           <View style={css.allSmallView}>
-            <Text>{treeData?.fatherId?.name}</Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Details", { horse: treeData?.fatherId });
+              }}
+            >
+              <Text>{treeData?.fatherId?.name}</Text>
+            </TouchableOpacity>
           </View>
           <View style={css.allSmallView}>
-            <Text>{treeData?.motherId?.name}</Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Details", { horse: treeData?.motherId });
+              }}
+            >
+              <Text>{treeData?.motherId?.name}</Text>
+            </TouchableOpacity>
           </View>
         </View>
         {/* etseg, ehiin --> etseg eh */}
         <View style={css.colBig}>
           <View style={css.allSmallView}>
             {/* etsgiin etseg */}
-            <Text>{treeData?.fatherId?.fatherId?.name}</Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Details", {
+                  horse: treeData?.fatherId?.fatherId,
+                });
+              }}
+            >
+              <Text>{treeData?.fatherId?.fatherId?.name}</Text>
+            </TouchableOpacity>
           </View>
           <View style={css.allSmallView}>
             {/* etsgiin eh */}
-            <Text>{treeData?.fatherId?.motherId?.name}</Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Details", {
+                  horse: treeData?.fatherId?.motherId,
+                });
+              }}
+            >
+              <Text>{treeData?.fatherId?.motherId?.name}</Text>
+            </TouchableOpacity>
           </View>
           <View style={css.allSmallView}>
             {/* ehiin etseg */}
-            <Text>{treeData?.motherId?.fatherId?.name}</Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Details", {
+                  horse: treeData?.motherId?.fatherId,
+                });
+              }}
+            >
+              <Text>{treeData?.motherId?.fatherId?.name}</Text>
+            </TouchableOpacity>
           </View>
           <View style={css.allSmallView}>
             {/* ehiin eh */}
-            <Text>{treeData?.motherId?.motherId?.name}</Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Details", {
+                  horse: treeData?.motherId?.motherId,
+                });
+              }}
+            >
+              <Text>{treeData?.motherId?.motherId?.name}</Text>
+            </TouchableOpacity>
           </View>
         </View>
         <View style={css.colBig}>
           <View style={css.allSmallView}>
-            <Text>{treeData?.fatherId?.fatherId?.fatherId?.name}</Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Details", {
+                  horse: treeData?.fatherId?.fatherId.fatherId,
+                });
+              }}
+            >
+              <Text>{treeData?.fatherId?.fatherId?.fatherId?.name}</Text>
+            </TouchableOpacity>
           </View>
           <View style={css.allSmallView}>
-            <Text>{treeData?.fatherId?.fatherId?.motherId?.name}</Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Details", {
+                  horse: treeData?.fatherId?.fatherId.motherId,
+                });
+              }}
+            >
+              <Text>{treeData?.fatherId?.fatherId?.motherId?.name}</Text>
+            </TouchableOpacity>
           </View>
           <View style={css.allSmallView}>
-            <Text>{treeData?.fatherId?.motherId?.fatherId?.name}</Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Details", {
+                  horse: treeData?.fatherId?.motherId.fatherId,
+                });
+              }}
+            >
+              <Text>{treeData?.fatherId?.motherId?.fatherId?.name}</Text>
+            </TouchableOpacity>
           </View>
           <View style={css.allSmallView}>
-            <Text>{treeData?.fatherId?.motherId?.motherId?.name}</Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Details", {
+                  horse: treeData?.fatherId?.motherId.motherId,
+                });
+              }}
+            >
+              <Text>{treeData?.fatherId?.motherId?.motherId?.name}</Text>
+            </TouchableOpacity>
           </View>
           <View style={css.allSmallView}>
-            <Text>{treeData?.motherId?.fatherId?.fatherId?.name}</Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Details", {
+                  horse: treeData?.motherId?.fatherId.fatherId,
+                });
+              }}
+            >
+              <Text>{treeData?.motherId?.fatherId?.fatherId?.name}</Text>
+            </TouchableOpacity>
           </View>
           <View style={css.allSmallView}>
-            <Text>{treeData?.motherId?.fatherId?.motherId?.name}</Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Details", {
+                  horse: treeData?.motherId?.fatherId.motherId,
+                });
+              }}
+            >
+              <Text>{treeData?.motherId?.fatherId?.motherId?.name}</Text>
+            </TouchableOpacity>
           </View>
           <View style={css.allSmallView}>
-            <Text>{treeData?.motherId?.motherId?.fatherId?.name}</Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Details", {
+                  horse: treeData?.motherId?.motherId.fatherId,
+                });
+              }}
+            >
+              <Text>{treeData?.motherId?.motherId?.fatherId?.name}</Text>
+            </TouchableOpacity>
           </View>
           <View style={css.allSmallView}>
-            <Text>{treeData?.motherId?.motherId?.motherId?.name}</Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Details", {
+                  horse: treeData?.motherId?.motherId.motherId,
+                });
+              }}
+            >
+              <Text>{treeData?.motherId?.motherId?.motherId?.name}</Text>
+            </TouchableOpacity>
           </View>
         </View>
         {/* etseg, ehiin --> etseg ehiin --> etseg eh */}
         <View style={css.colBig}>
           <View style={css.allSmallView}>
-            <Text>
-              {treeData?.fatherId?.fatherId?.fatherId?.fatherId?.name}
-            </Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Details", {
+                  horse: treeData?.fatherId?.fatherId?.fatherId?.fatherId,
+                });
+              }}
+            >
+              <Text>
+                {treeData?.fatherId?.fatherId?.fatherId?.fatherId?.name}
+              </Text>
+            </TouchableOpacity>
           </View>
           <View style={css.allSmallView}>
-            <Text>
-              {treeData?.fatherId?.fatherId?.fatherId?.motherId?.name}
-            </Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Details", {
+                  horse: treeData?.fatherId?.fatherId?.fatherId?.motherId,
+                });
+              }}
+            >
+              <Text>
+                {treeData?.fatherId?.fatherId?.fatherId?.motherId?.name}
+              </Text>
+            </TouchableOpacity>
           </View>
           <View style={css.allSmallView}>
-            <Text>
-              {treeData?.fatherId?.fatherId?.motherId?.fatherId?.name}
-            </Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Details", {
+                  horse: treeData?.fatherId?.fatherId?.motherId?.fatherId,
+                });
+              }}
+            >
+              <Text>
+                {treeData?.fatherId?.fatherId?.motherId?.fatherId?.name}
+              </Text>
+            </TouchableOpacity>
           </View>
           <View style={css.allSmallView}>
-            <Text>
-              {treeData?.fatherId?.fatherId?.motherId?.motherId?.name}
-            </Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Details", {
+                  horse: treeData?.fatherId?.fatherId?.motherId?.motherId,
+                });
+              }}
+            >
+              <Text>
+                {treeData?.fatherId?.fatherId?.motherId?.motherId?.name}
+              </Text>
+            </TouchableOpacity>
           </View>
           <View style={css.allSmallView}>
-            <Text>
-              {treeData?.fatherId?.motherId?.fatherId?.fatherId?.name}
-            </Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Details", {
+                  horse: treeData?.fatherId?.motherId?.fatherId?.fatherId,
+                });
+              }}
+            >
+              <Text>
+                {treeData?.fatherId?.motherId?.fatherId?.fatherId?.name}
+              </Text>
+            </TouchableOpacity>
           </View>
           <View style={css.allSmallView}>
-            <Text>
-              {treeData?.fatherId?.motherId?.fatherId?.motherId?.name}
-            </Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Details", {
+                  horse: treeData?.fatherId?.motherId?.fatherId?.motherId,
+                });
+              }}
+            >
+              <Text>
+                {treeData?.fatherId?.motherId?.fatherId?.motherId?.name}
+              </Text>
+            </TouchableOpacity>
           </View>
           <View style={css.allSmallView}>
-            <Text>
-              {treeData?.fatherId?.motherId?.motherId?.fatherId?.name}
-            </Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Details", {
+                  horse: treeData?.fatherId?.motherId?.motherId?.fatherId,
+                });
+              }}
+            >
+              <Text>
+                {treeData?.fatherId?.motherId?.motherId?.fatherId?.name}
+              </Text>
+            </TouchableOpacity>
           </View>
           <View style={css.allSmallView}>
-            <Text>
-              {treeData?.fatherId?.motherId?.motherId?.motherId?.name}
-            </Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Details", {
+                  horse: treeData?.fatherId?.motherId?.motherId?.motherId,
+                });
+              }}
+            >
+              <Text>
+                {treeData?.fatherId?.motherId?.motherId?.motherId?.name}
+              </Text>
+            </TouchableOpacity>
           </View>
           <View style={css.allSmallView}>
-            <Text>
-              {treeData?.motherId?.fatherId?.fatherId?.fatherId?.name}
-            </Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Details", {
+                  horse: treeData?.motherId?.fatherId?.fatherId?.fatherId,
+                });
+              }}
+            >
+              <Text>
+                {treeData?.motherId?.fatherId?.fatherId?.fatherId?.name}
+              </Text>
+            </TouchableOpacity>
           </View>
           <View style={css.allSmallView}>
-            <Text>
-              {treeData?.motherId?.fatherId?.fatherId?.motherId?.name}
-            </Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Details", {
+                  horse: treeData?.motherId?.fatherId?.fatherId?.motherId,
+                });
+              }}
+            >
+              <Text>
+                {treeData?.motherId?.fatherId?.fatherId?.motherId?.name}
+              </Text>
+            </TouchableOpacity>
           </View>
           <View style={css.allSmallView}>
-            <Text>
-              {treeData?.motherId?.fatherId?.motherId?.fatherId?.name}
-            </Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Details", {
+                  horse: treeData?.motherId?.fatherId?.motherId?.fatherId,
+                });
+              }}
+            >
+              <Text>
+                {treeData?.motherId?.fatherId?.motherId?.fatherId?.name}
+              </Text>
+            </TouchableOpacity>
           </View>
           <View style={css.allSmallView}>
-            <Text>
-              {treeData?.motherId?.fatherId?.motherId?.motherId?.name}
-            </Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Details", {
+                  horse: treeData?.motherId?.fatherId?.motherId?.motherId,
+                });
+              }}
+            >
+              <Text>
+                {treeData?.motherId?.fatherId?.motherId?.motherId?.name}
+              </Text>
+            </TouchableOpacity>
           </View>
           <View style={css.allSmallView}>
-            <Text>
-              {treeData?.motherId?.motherId?.fatherId?.fatherId?.name}
-            </Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Details", {
+                  horse: treeData?.motherId?.motherId?.fatherId?.fatherId,
+                });
+              }}
+            >
+              <Text>
+                {treeData?.motherId?.motherId?.fatherId?.fatherId?.name}
+              </Text>
+            </TouchableOpacity>
           </View>
           <View style={css.allSmallView}>
-            <Text style={css.allText}>
-              {treeData?.motherId?.motherId?.fatherId?.motherId?.name}
-            </Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Details", {
+                  horse: treeData?.motherId?.motherId?.fatherId?.motherId,
+                });
+              }}
+            >
+              <Text style={css.allText}>
+                {treeData?.motherId?.motherId?.fatherId?.motherId?.name}
+              </Text>
+            </TouchableOpacity>
           </View>
           <View style={css.allSmallView}>
-            <Text style={css.allText}>
-              {treeData?.motherId?.motherId?.motherId?.fatherId?.name}
-            </Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Details", {
+                  horse: treeData?.motherId?.motherId?.motherId?.fatherId,
+                });
+              }}
+            >
+              <Text style={css.allText}>
+                {treeData?.motherId?.motherId?.motherId?.fatherId?.name}
+              </Text>
+            </TouchableOpacity>
           </View>
           <View style={css.allSmallView}>
-            <Text style={css.allText}>
-              {treeData?.motherId?.motherId?.motherId?.motherId?.name}
-            </Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Details", {
+                  horse: treeData?.motherId?.motherId?.motherId?.motherId,
+                });
+              }}
+            >
+              <Text style={css.allText}>
+                {treeData?.motherId?.motherId?.motherId?.motherId?.name}
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>

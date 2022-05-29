@@ -27,19 +27,22 @@ import FlashMessage from "react-native-flash-message";
 import { RadioButton } from "react-native-paper";
 import axios from "axios";
 import Tree from "../components/Tree";
+import { useNavigation } from "@react-navigation/native";
 // import { useFonts } from "expo-font";
 
 const HorseDetailScreen = (props) => {
   const [message, setMessage] = useState(false);
+  const [ref, setRef] = useState(false);
   const [rating, setRating] = React.useState(null);
   const [treeData, setTreeData] = useState(null);
   const [updateRatingData, setUpdateRatingData] = React.useState(null);
+  const navigation = useNavigation();
 
   const state = useContext(UserContext);
   const horseId = props.route.params.horse;
   const checkRating = updateRatingData?.rating
     ? updateRatingData.rating
-    : horseId.rating;
+    : horseId?.rating;
   // console.log('" horseId ----"', horseId);
 
   const loadHorse = async () => {
@@ -50,6 +53,7 @@ const HorseDetailScreen = (props) => {
       );
       // const result = await axios.get(`${url}/horsesM/${horseId}`);
       setTreeData(result.data.data);
+      setRef(false);
       // setError(null);
     } catch (err) {
       // setError(err.message);
@@ -234,7 +238,20 @@ const HorseDetailScreen = (props) => {
             >
               Эцэг
             </Text>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                // window.location.reload(true);
+                navigation.navigate("Details", { horse: treeData?.fatherId });
+
+                // navigation.navigate("Details", { horse: treeData });
+                // setRef(true);
+              }}
+              // style={{
+              //   paddingVertical: 14,
+              //   flexDirection: "row",
+              //   alignItems: "center",
+              // }}
+            >
               <Text style={{ fontSize: 20 }}> {treeData?.fatherId?.name}</Text>
             </TouchableOpacity>
           </View>
@@ -248,7 +265,13 @@ const HorseDetailScreen = (props) => {
             >
               Эх
             </Text>
-            <Text style={{ fontSize: 20 }}>{treeData?.motherId?.name}</Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Details", { horse: treeData?.motherId });
+              }}
+            >
+              <Text style={{ fontSize: 20 }}>{treeData?.motherId?.name}</Text>
+            </TouchableOpacity>
           </View>
           <View style={{ marginHorizontal: 10 }}>
             <Text
