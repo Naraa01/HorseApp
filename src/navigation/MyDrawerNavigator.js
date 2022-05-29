@@ -45,13 +45,18 @@ export default () => {
       />
       {state.isLoggedIn ? (
         <>
-          {state.userRole === "admin" && (
+          {/* {state.userRole === "admin" && (
             <Drawer.Screen
               name="Шинэ морь нэмэх"
               component={HorseAdd}
               options={{ headerShown: false }}
             />
-          )}
+          )} */}
+          <Drawer.Screen
+            name="Шинэ морь нэмэх"
+            component={HorseAdd}
+            options={{ headerShown: false }}
+          />
           <Drawer.Screen
             name="Тохиргоо"
             component={SettingsScreen}

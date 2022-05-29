@@ -327,6 +327,26 @@ const HorseAddScreen = (props) => {
               }}
             />
 
+            <FormPicker
+              label="Эцэг оруулна уу : "
+              icon="layers"
+              value={horse.genderId}
+              data={genders.map((el) => el.name)}
+              values={genders.map((el) => el._id)}
+              // data={[
+              //   "Азарга",
+              //   "Их нас",
+              //   "Соёолон",
+              //   "Хязаалан",
+              //   "Шүдлэн",
+              //   "Даага",
+              // ]}
+              // values={["azarga", "ih", "soyo", "hyza", "shud", "daa"]}
+              onValueChange={(value, index) => {
+                console.log(value), setHorse({ ...horse, genderId: value });
+              }}
+            />
+
             <FormText
               label="Эцэг оруулна уу"
               placeholder="Эцэг"
