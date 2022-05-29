@@ -24,13 +24,14 @@ import MyButton from "../components/MyButton";
 import FormRadioButton from "../components/FormRadioButton";
 import axios from "axios";
 import UserContext from "../context/userContext";
-
+import useNoParentHorse from "../hooks/useNoParentHorse";
 import * as ImagePicker from "expo-image-picker";
 import * as Linking from "expo-linking";
 import { startActivityAsync, ActivityAction } from "expo-intent-launcher";
 
 const HorseAddScreen = (props) => {
   const [genders, errorMsg, loading] = useGender();
+  const [noPhorses] = useNoParentHorse();
   const [horse, setHorse] = useState({
     name: "Цагаан",
     father: "Бор халзан",
@@ -45,6 +46,9 @@ const HorseAddScreen = (props) => {
     info: "",
     status: "Одоо байгаа",
     genderId: null,
+    birthDate: "2022-05",
+    motherId: null,
+    fatherId: null,
     //userId: "61a8eacf0168605e0a5c0354",
   });
 
@@ -328,26 +332,18 @@ const HorseAddScreen = (props) => {
             />
 
             <FormPicker
-              label="Эцэг оруулна уу : "
+              label="Эцэг сонгоно уу : "
               icon="layers"
-              value={horse.genderId}
-              data={genders.map((el) => el.name)}
-              values={genders.map((el) => el._id)}
-              // data={[
-              //   "Азарга",
-              //   "Их нас",
-              //   "Соёолон",
-              //   "Хязаалан",
-              //   "Шүдлэн",
-              //   "Даага",
-              // ]}
-              // values={["azarga", "ih", "soyo", "hyza", "shud", "daa"]}
+              value={horse.fatherId}
+              data={noPhorses.map((el) => el.name)}
+              values={noPhorses.map((el) => el._id)}
               onValueChange={(value, index) => {
-                console.log(value), setHorse({ ...horse, genderId: value });
+                setHorse({ ...horse, fatherId: value });
+                console.log("etseg -> ", value);
               }}
             />
 
-            <FormText
+            {/* <FormText
               label="Эцэг оруулна уу"
               placeholder="Эцэг"
               icon="book"
@@ -355,7 +351,7 @@ const HorseAddScreen = (props) => {
               errorShow={error.father}
               value={horse.father}
               onChangeText={checkFather}
-            />
+            /> */}
             <FormText
               label="Эх оруулна уу"
               placeholder="Эх"

@@ -68,7 +68,7 @@ const GenderListScreen = (props) => {
           )}
           <ScrollView style={{ marginTop: 20, marginBottom: 100 }}>
             {filteredHorse.map((data) => {
-              console.log("data ====> .>> >> >>> ", data.photo);
+              // console.log("data ====> .>> >> >>> ", data.photo);
               return (
                 <TouchableOpacity
                   onPress={() =>
