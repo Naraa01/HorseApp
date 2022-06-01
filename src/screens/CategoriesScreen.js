@@ -35,11 +35,12 @@ const CategoriesScreen = (props) => {
       </View>
 
       <FlatList
+        numColumns={2}
         style={css.flatListStyle}
-        horizontal //horizontal={true} --gsn utgatai
-        showsHorizontalScrollIndicator={false}
+        // horizontal //horizontal={true}
+        // showsHorizontalScrollIndicator={false}
         data={genders} //
-        keyExtractor={(horse) => horse._id} // bugdend n key ugnu
+        keyExtractor={(horse) => horse._id} // all key
         renderItem={
           (horse) => (
             <Gender
@@ -47,7 +48,6 @@ const CategoriesScreen = (props) => {
               //navigation={props.navigation}
             />
           )
-
           // <Text>{horse2.name}</Text>
         } //
       />
@@ -60,9 +60,13 @@ export default CategoriesScreen;
 const css = StyleSheet.create({
   genderStyle: {
     // height: 200,
+    // marginHorizontal: 30,
+    // flex: 1,
     // backgroundColor: "yellow",
   },
   flatListStyle: {
+    // paddingHorizontal: 60,
+    height: "auto",
     // height: 500,
   },
 });

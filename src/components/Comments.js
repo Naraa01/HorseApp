@@ -93,9 +93,9 @@ const Comments = (props) => {
       <FlashMessage position="top" />
       <View style={{ flex: 1, flexDirection: "row" }}>
         <View>
-          <Text style={{ fontSize: 20 }}>Comments</Text>
+          <Text style={{ fontSize: 20 }}>Сэтгэгдэл</Text>
         </View>
-        <View
+        {/* <View
           style={{
             // backgroundColor: "yellow",
             flex: 1,
@@ -133,7 +133,7 @@ const Comments = (props) => {
           >
             Popular
           </Text>
-        </View>
+        </View> */}
       </View>
       <View
         style={{
@@ -168,7 +168,7 @@ const Comments = (props) => {
               backgroundColor: "#f1f1f1",
             }}
           >
-            <Text style={css.appButtonText}>Send</Text>
+            <Text style={css.appButtonText}>Илгээх</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -234,7 +234,7 @@ const Comments = (props) => {
             );
           })
         ) : (
-          <Text>Comment Байхгүй</Text>
+          <Text>Сэтгэгдэл Байхгүй</Text>
         )}
       </View>
     </View>

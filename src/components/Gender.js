@@ -13,13 +13,14 @@ const Gender = ({ data }) => {
       onPress={() => navigation.navigate("GenderList", { horse: data })}
       // onPress={() => navigation.navigate("Detail", { id: data._id })} //parameter damjuulalt,, detail n id g huleej awah bolomjtoi blson
       style={{
-        marginLeft: 8,
+        paddingHorizontal: 10,
+        // marginLeft: 8,
         // marginVertical: 10,
         // width: 100,
       }}
     >
       <Image
-        style={{ width: 200, height: 200, borderRadius: 30 }}
+        style={{ width: 190, height: 190, borderRadius: 30 }}
         source={{
           uri: `${url}/profile/` + data.photo,
           // uri: `http://192.168.1.94:5001/profile/` + data.photo,
@@ -30,8 +31,9 @@ const Gender = ({ data }) => {
         style={{
           marginLeft: 10,
           fontSize: 16,
-          // fontFamily: "serif",
+          fontFamily: "serif",
           marginTop: 10,
+          marginBottom: 4,
         }}
       >
         {data.name}

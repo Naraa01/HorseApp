@@ -11,6 +11,7 @@ import {
 import Search from "../components/Search";
 import GenderHorsesList from "../components/GenderHorsesList";
 import Spinner from "../components/Spinner";
+import Footer from "../components/Footer";
 // import MyHeaderButton from "../components/MyHeaderButton";
 
 import {
@@ -85,6 +86,7 @@ const HomeScreen = ({ navigation, route }) => {
           )} */}
 
           <ScrollView style={{ marginTop: 20 }}>
+            {/* <View> */}
             <CategoriesScreen
               refresh={refresh}
               setRefresh={setRefresh}
@@ -95,6 +97,7 @@ const HomeScreen = ({ navigation, route }) => {
               // data={el}
               style={{ marginVertical: 10 }}
             />
+
             <View style={{ marginTop: 25, paddingHorizontal: 20 }}>
               <Text
                 style={{
@@ -106,6 +109,10 @@ const HomeScreen = ({ navigation, route }) => {
                 Бүгд
               </Text>
               <HorsesAll />
+            </View>
+
+            <View>
+              <Footer />
             </View>
 
             {/* {genders.map((el) => (
@@ -133,6 +140,7 @@ const HomeScreen = ({ navigation, route }) => {
                 style={{ marginVertical: 10 }}
               />
             ))} */}
+            {/* </View> */}
           </ScrollView>
         </View>
       )}
