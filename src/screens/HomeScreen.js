@@ -98,7 +98,7 @@ const HomeScreen = ({ navigation, route }) => {
               style={{ marginVertical: 10 }}
             />
 
-            <View style={{ marginTop: 25, paddingHorizontal: 20 }}>
+            {/* <View style={{ marginTop: 25, paddingHorizontal: 20 }}>
               <Text
                 style={{
                   fontSize: 18,
@@ -109,7 +109,7 @@ const HomeScreen = ({ navigation, route }) => {
                 Бүгд
               </Text>
               <HorsesAll />
-            </View>
+            </View> */}
 
             <View>
               <Footer />
