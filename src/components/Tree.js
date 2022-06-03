@@ -15,6 +15,7 @@ const Tree = (props) => {
     try {
       const result = await axios.get(
         `${url}/horsesM/${props.horseId}/tree`
+        // `${url}/horsesM/${props.horseId}/treelast`
         // `http://192.168.1.94:5001//horsesM/${horseId}`
       );
       // const result = await axios.get(`${url}/horsesM/${horseId}`);
