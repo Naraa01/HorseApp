@@ -50,7 +50,7 @@ const HomeScreen = ({ navigation, route }) => {
       //     <Item title="Tses" iconName="menu" onPress={() => alert("search")} />
       //   </HeaderButtons>
       // ),
-      title: state.userName ? "Welcome: " + state.userName : "Гарал үүсэл",
+      title: state.userName ? "Тавтай морил: " + state.userName : "Удам угсаа",
     });
   }, [navigation, localSearchText, state.userName]); //useEffectte adilhanduu func
 

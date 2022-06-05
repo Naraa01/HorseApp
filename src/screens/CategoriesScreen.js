@@ -27,13 +27,23 @@ const CategoriesScreen = (props) => {
   // );
   return (
     <View style={css.genderStyle}>
-      <View style={{ marginHorizontal: 30, paddingBottom: 30 }}>
+      {/* <View style={{ marginHorizontal: 30, paddingBottom: 30 }}>
         <Text style={{ flex: 1, fontSize: 16, color: "gray" }}>Морь</Text>
         <Text style={{ flex: 1, fontSize: 25, fontWeight: "bold" }}>
           Ангилал
         </Text>
-      </View>
-
+      </View> */}
+      <Text
+        style={{
+          flex: 1,
+          fontSize: 25,
+          fontWeight: "bold",
+          marginHorizontal: 30,
+          paddingBottom: 30,
+        }}
+      >
+        Ангилал
+      </Text>
       <FlatList
         numColumns={2}
         style={css.flatListStyle}

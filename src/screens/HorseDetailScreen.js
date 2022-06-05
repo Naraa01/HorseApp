@@ -187,14 +187,25 @@ const HorseDetailScreen = (props) => {
         />
       )} */}
       {/* <FlashMessage position="top" /> */}
-      <View style={{ margin: 30 }}>
+      {/* <View style={{ margin: 30 }}>
         <Text style={{ flex: 1, fontSize: 16, color: "gray" }}>Нэр</Text>
         <Text style={{ flex: 1, fontSize: 25, fontWeight: "bold" }}>
           {horseId.name}
         </Text>
-      </View>
-      {/* <Text>{horseId.photo}</Text> */}
-      <View style={{ marginHorizontal: 5, borderRadius: 20 }}>
+      </View> */}
+
+      <View style={{ marginHorizontal: 1, borderRadius: 20 }}>
+        <Text
+          style={{
+            flex: 1,
+            fontSize: 25,
+            fontWeight: "bold",
+            marginVertical: 15,
+            marginHorizontal: 20,
+          }}
+        >
+          {horseId.name}
+        </Text>
         <Image
           style={{
             width: "100%",
@@ -208,18 +219,21 @@ const HorseDetailScreen = (props) => {
           }}
         />
       </View>
-      <View style={{ paddingHorizontal: 0, paddingVertical: 10 }}>
+
+      <View style={{ paddingVertical: 10 }}>
         <View
           style={{
-            flex: 1,
+            // flex: 1,
+            marginTop: 4,
             flexDirection: "row",
             paddingHorizontal: 10,
-            justifyContent: "space-between",
+            // justifyContent: "space-evenly",
             // backgroundColor: "blue",
           }}
         >
           <View
             style={{
+              flex: 1,
               // marginHorizontal: 10,
               paddingHorizontal: 10,
               // borderBottomRightRadius: 30,
@@ -255,12 +269,13 @@ const HorseDetailScreen = (props) => {
               <Text style={{ fontSize: 20 }}> {treeData?.fatherId?.name}</Text>
             </TouchableOpacity>
           </View>
-          <View style={{ marginHorizontal: 10 }}>
+          <View style={{ flex: 1, marginHorizontal: 10 }}>
             <Text
               style={{
                 fontSize: 14,
                 color: "gray",
                 fontFamily: "sans-serif-medium",
+                marginHorizontal: 6,
               }}
             >
               Эх
@@ -270,39 +285,32 @@ const HorseDetailScreen = (props) => {
                 navigation.navigate("Details", { horse: treeData?.motherId });
               }}
             >
-              <Text style={{ fontSize: 20 }}>{treeData?.motherId?.name}</Text>
+              <Text style={{ fontSize: 20, marginHorizontal: 5 }}>
+                {treeData?.motherId?.name}
+              </Text>
             </TouchableOpacity>
           </View>
-          <View style={{ marginHorizontal: 10 }}>
+        </View>
+
+        <View
+          style={{ marginTop: 8, paddingHorizontal: 10, flexDirection: "row" }}
+        >
+          <View style={{ flex: 1, paddingHorizontal: 10 }}>
             <Text
               style={{
                 fontSize: 14,
                 color: "gray",
+                marginHorizontal: 5,
                 fontFamily: "sans-serif-medium",
               }}
             >
               Зүс
             </Text>
-            <Text style={{ fontSize: 20 }}>{horseId.color}</Text>
+            <Text style={{ fontSize: 20, marginHorizontal: 5 }}>
+              {horseId.color}
+            </Text>
           </View>
-        </View>
-        <View
-          style={{
-            marginTop: 8,
-            flexDirection: "row",
-            // backgroundColor: "blue",
-            // flex: 1,
-            // paddingHorizontal: 10,
-            // justifyContent: "space-between",
-          }}
-        >
-          <View
-            style={{
-              flex: 1,
-              paddingLeft: 20,
-              // backgroundColor: "blue",
-            }}
-          >
+          <View style={{ flex: 1 }}>
             <Text
               style={{
                 fontSize: 14,
@@ -315,11 +323,22 @@ const HorseDetailScreen = (props) => {
             </Text>
             <Text style={{ fontSize: 20 }}> {horseId.pedigree}</Text>
           </View>
+        </View>
+
+        <View
+          style={{
+            marginTop: 8,
+            // flex: 1,
+            flexDirection: "row",
+            // backgroundColor: "blue",
+            paddingHorizontal: 10,
+            justifyContent: "space-between",
+          }}
+        >
           <View
             style={{
               flex: 1,
-              // marginHorizontal: 120,
-              // backgroundColor: "yellow",
+              paddingHorizontal: 10,
               fontFamily: "sans-serif-medium",
             }}
           >
@@ -334,32 +353,6 @@ const HorseDetailScreen = (props) => {
               Эзэн
             </Text>
             <Text style={{ fontSize: 20 }}> {horseId.owner}</Text>
-          </View>
-        </View>
-
-        <View
-          style={{
-            marginTop: 8,
-            // flex: 1,
-            flexDirection: "row",
-            // backgroundColor: "blue",
-            // paddingHorizontal: 10,
-            justifyContent: "space-between",
-          }}
-        >
-          <View style={{ flex: 1, paddingLeft: 20 }}>
-            <Text
-              style={{
-                fontSize: 14,
-                // fontFamily: "courier",
-                marginHorizontal: 5,
-                color: "gray",
-                fontFamily: "sans-serif-medium",
-              }}
-            >
-              Нутаг
-            </Text>
-            <Text style={{ fontSize: 20 }}> {horseId.country}</Text>
           </View>
           <View style={{ flex: 1 }}>
             <Text
@@ -399,45 +392,15 @@ const HorseDetailScreen = (props) => {
             <Text
               style={{
                 fontSize: 14,
+                // fontFamily: "courier",
                 marginHorizontal: 5,
                 color: "gray",
                 fontFamily: "sans-serif-medium",
               }}
             >
-              Үнэлгээ
+              Нутаг
             </Text>
-            <View
-              style={{
-                flex: 1,
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              {[...Array(5)].map((star, i, number) => {
-                const ratingValue = i + 1;
-                return (
-                  <TouchableOpacity
-                    onPress={() => {
-                      setRating(ratingValue);
-                      RatingSave(ratingValue);
-                    }}
-                    // onPress={() => (
-                    //   setRating(ratingValue), console.log("aaaaaabbbba", ratingValue)
-                    // )}
-                  >
-                    <FontAwesome
-                      name="star"
-                      color={ratingValue <= checkRating ? "yellow" : "black"}
-                      size={20}
-                      style={{ margin: 1 }}
-                    />
-                  </TouchableOpacity>
-                  // </Label>
-                );
-              })}
-            </View>
-            {/* <Text style={{ fontSize: 20 }}>{horseId.rating}</Text> */}
+            <Text style={{ fontSize: 20 }}> {horseId.country}</Text>
           </View>
           <View style={{ flex: 1 }}>
             <Text
@@ -453,6 +416,51 @@ const HorseDetailScreen = (props) => {
             <Text style={{ fontSize: 20 }}> {horseId.gender}</Text>
           </View>
         </View>
+        <View style={{ flex: 1, paddingLeft: 20, marginTop: 8 }}>
+          <Text
+            style={{
+              fontSize: 14,
+              marginHorizontal: 5,
+              color: "gray",
+              fontFamily: "sans-serif-medium",
+            }}
+          >
+            Үнэлгээ
+          </Text>
+          <View
+            style={{
+              flex: 1,
+              flexDirection: "row",
+              // justifyContent: "center",
+              // alignItems: "center",
+            }}
+          >
+            {[...Array(5)].map((star, i, number) => {
+              const ratingValue = i + 1;
+              return (
+                <TouchableOpacity
+                  onPress={() => {
+                    setRating(ratingValue);
+                    RatingSave(ratingValue);
+                  }}
+                  // onPress={() => (
+                  //   setRating(ratingValue), console.log("aaaaaabbbba", ratingValue)
+                  // )}
+                >
+                  <FontAwesome
+                    name="star"
+                    color={ratingValue <= checkRating ? "yellow" : "black"}
+                    size={20}
+                    style={{ margin: 1 }}
+                  />
+                </TouchableOpacity>
+                // </Label>
+              );
+            })}
+          </View>
+          {/* <Text style={{ fontSize: 20 }}>{horseId.rating}</Text> */}
+        </View>
+
         <View
           style={{
             // backgroundColor: "pink",
@@ -466,14 +474,16 @@ const HorseDetailScreen = (props) => {
                 fontSize: 14,
                 color: "gray",
                 fontFamily: "sans-serif-medium",
+                marginHorizontal: 5,
               }}
             >
-              {" "}
               Мэдээлэл
             </Text>
           </View>
           <View>
-            <Text style={{ fontSize: 14 }}> {horseId.info}</Text>
+            <Text style={{ fontSize: 14, marginLeft: 5, marginRight: 10 }}>
+              {horseId.info}
+            </Text>
           </View>
         </View>
       </View>

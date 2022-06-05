@@ -22,6 +22,7 @@ const Drawer = createDrawerNavigator();
 import UserContext from "../context/userContext";
 import GenderList from "../screens/GenderListScreen";
 import HorsesAll from "../components/HorsesAll";
+import Footer from "../components/Footer";
 
 export default () => {
   const state = useContext(UserContext);
@@ -147,6 +148,7 @@ export default () => {
           title: "Морь",
         }}
       />
+      {/* <Footer /> */}
     </Drawer.Navigator>
   );
 };

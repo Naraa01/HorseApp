@@ -49,26 +49,25 @@ const GenderListScreen = (props) => {
   // console.log("filteredHorsefilteredHorse", filteredHorse);
   const dataPhoto = filteredHorse.photo ? filteredHorse.photo : horses.photo;
   const dataName = filteredHorse.name ? filteredHorse.name : horses.name;
-
+  // console.log("filteredHorse,=====", filteredHorse);
   return (
     <View>
       {loading ? (
         <Spinner />
       ) : (
-        <View>
+        <View style={{ paddingHorizontal: 20 }}>
           <Search
             value={localSearchText}
             onValueChange={setLocalSearchText}
             onFinishEnter={searchHorseFromServer}
           />
-          {errorMsg && ( //errorMsg bhin bol Text ajillahgu
+          {errorMsg && (
             <Text style={{ color: "red", marginHorizontal: 20, top: 20 }}>
               {errorMsg}
             </Text>
           )}
           <ScrollView style={{ marginTop: 20, marginBottom: 100 }}>
             {filteredHorse.map((data) => {
-              // console.log("data ====> .>> >> >>> ", data.photo);
               return (
                 <TouchableOpacity
                   onPress={() =>
@@ -76,7 +75,7 @@ const GenderListScreen = (props) => {
                   }
                   style={{
                     // backgroundColor: "cyan",
-                    paddingHorizontal: 10,
+                    // paddingHorizontal: 10,
                     paddingVertical: 14,
                     flexDirection: "row",
                     alignItems: "center",
@@ -89,8 +88,10 @@ const GenderListScreen = (props) => {
                     }}
                   />
                   <View style={{ paddingHorizontal: 20 }}>
-                    <Text style={{ fontSize: 14, color: "gray" }}>Нэр</Text>
-                    <Text
+                    <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+                      {data.name}
+                    </Text>
+                    {/* <Text
                       style={{
                         fontSize: 20,
                         fontWeight: "bold",
@@ -98,7 +99,25 @@ const GenderListScreen = (props) => {
                       }}
                     >
                       {data.name}
+                    </Text> */}
+                    <Text
+                    // style={{
+                    //   fontSize: 14,
+                    //   color: "gray",
+                    //   width: 200,
+                    // }}
+                    >
+                      <Text style={{ fontSize: 12, color: "gray" }}>Зүс: </Text>
+                      <Text style={{ fontSize: 18 }}>{data.color}</Text>
                     </Text>
+                    {data.owner ? (
+                      <Text>
+                        <Text style={{ fontSize: 12, color: "gray" }}>
+                          Эзэн:{" "}
+                        </Text>
+                        <Text style={{ fontSize: 18 }}>{data.owner}</Text>
+                      </Text>
+                    ) : null}
                   </View>
                 </TouchableOpacity>
               );

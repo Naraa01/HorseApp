@@ -5,6 +5,7 @@ import { Avatar, Caption, Title, Drawer } from "react-native-paper";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import Ion from "react-native-vector-icons/Ionicons";
 import UserContext from "../context/userContext";
+import Footer from "./Footer";
 
 const DrawerContent = (props) => {
   const state = useContext(UserContext);
@@ -26,7 +27,7 @@ const DrawerContent = (props) => {
                 lineHeight: 20,
               }}
             >
-              {state.userName ? state.userName : "Гарал үүсэл"}
+              {state.userName ? state.userName : "Удам угсаа"}
             </Title>
             <Caption style={{ lineHeight: 14 }}>
               {state.userRole ? state.userRole : "Тавтай морил"}
@@ -116,6 +117,7 @@ const DrawerContent = (props) => {
           )}
         </Drawer.Section>
       </DrawerContentScrollView>
+      <Footer />
     </View>
   );
 };
