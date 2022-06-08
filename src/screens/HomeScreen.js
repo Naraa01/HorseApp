@@ -45,14 +45,9 @@ const HomeScreen = ({ navigation, route }) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      // headerRight: () => (
-      //   <HeaderButtons HeaderButtonComponent={MyHeaderButton}>
-      //     <Item title="Tses" iconName="menu" onPress={() => alert("search")} />
-      //   </HeaderButtons>
-      // ),
       title: state.userName ? "Тавтай морил: " + state.userName : "Удам угсаа",
     });
-  }, [navigation, localSearchText, state.userName]); //useEffectte adilhanduu func
+  }, [navigation, localSearchText, state.userName]);
 
   const searchHorseFromServer = () => {
     console.log(`Serveress ${localSearchText} utgaar haij ehellee...`);
@@ -60,8 +55,6 @@ const HomeScreen = ({ navigation, route }) => {
     console.log(serverSearchText);
   };
 
-  // console.log("----", navigation);
-  //navigation dotor navigate gj bga ter n huudas hoorond solih func ym
   return (
     <View
       style={{
@@ -74,19 +67,7 @@ const HomeScreen = ({ navigation, route }) => {
         <Spinner />
       ) : (
         <View>
-          {/* <Search
-            value={localSearchText}
-            onValueChange={setLocalSearchText}
-            onFinishEnter={searchHorseFromServer}
-          />
-          {errorMsg && ( //errorMsg bhin bol Text ajillahgu
-            <Text style={{ color: "red", marginHorizontal: 20, top: 20 }}>
-              {errorMsg}
-            </Text>
-          )} */}
-
           <ScrollView style={{ marginTop: 20 }}>
-            {/* <View> */}
             <CategoriesScreen
               refresh={refresh}
               setRefresh={setRefresh}
@@ -97,50 +78,9 @@ const HomeScreen = ({ navigation, route }) => {
               // data={el}
               style={{ marginVertical: 10 }}
             />
-
-            {/* <View style={{ marginTop: 25, paddingHorizontal: 20 }}>
-              <Text
-                style={{
-                  fontSize: 18,
-                  fontWeight: "bold",
-                  paddingHorizontal: 20,
-                }}
-              >
-                Бүгд
-              </Text>
-              <HorsesAll />
-            </View> */}
-
             <View>
               <Footer />
             </View>
-
-            {/* {genders.map((el) => (
-              <GenderHorsesList
-                refresh={refresh}
-                setRefresh={setRefresh}
-                navigation={navigation}
-                searchLocalValue={localSearchText}
-                searchServerValue={serverSearchText} //localSearchText ugchhin bol useg shiweh bolgond unshij bga
-                key={el._id}
-                data={el}
-                style={{ marginVertical: 10 }}
-              />
-            ))} */}
-
-            {/* {genders.map((el) => (
-              <GenderPublicHorses
-                refresh={refresh}
-                setRefresh={setRefresh}
-                navigation={navigation}
-                searchLocalValue={localSearchText}
-                searchServerValue={serverSearchText} //localSearchText ugchhin bol useg shiweh bolgond unshij bga
-                key={el._id}
-                data={el}
-                style={{ marginVertical: 10 }}
-              />
-            ))} */}
-            {/* </View> */}
           </ScrollView>
         </View>
       )}

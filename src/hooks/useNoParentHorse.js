@@ -15,7 +15,6 @@ export default () => {
     setLoading(true);
     axios
       .get(`${url}/noParent`)
-      // .get("http://192.168.1.94:5001/gender")
       .then((res) => {
         console.log("no parent huleej awlaa", res.data.data);
         setNoPhorses(res.data.data);

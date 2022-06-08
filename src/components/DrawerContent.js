@@ -47,7 +47,6 @@ const DrawerContent = (props) => {
           {state.isLoggedIn ? (
             <>
               {state.userRole === "admin" && (
-                // <Drawer.Screen name="Шинэ ном нэмэх" component={HomeScreen} />
                 <DrawerItem
                   label="Шинэ морь нэмэх"
                   onPress={() => props.navigation.navigate("Шинэ морь нэмэх")}
@@ -71,17 +70,6 @@ const DrawerContent = (props) => {
                   <Icon name="logout" color={color} size={size} />
                 )}
               />
-
-              {/* <Drawer.Screen
-                name="Гарах"
-                component={HomeScreen}
-                listeners={() => {
-                  state.logout();
-                }} //event bolgond duudagdana
-                options={{
-                  title: "Гарах",
-                }}
-              /> */}
             </>
           ) : (
             <>
@@ -99,20 +87,6 @@ const DrawerContent = (props) => {
                   <Icon name="login" color={color} size={size} />
                 )}
               />
-              {/* <Drawer.Screen
-                name="Signup"
-                component={SignupScreen}
-                options={{
-                  title: "Бүртгүүлэх",
-                }}
-              />
-              <Drawer.Screen
-                name="Login"
-                component={LoginScreen}
-                options={{
-                  title: "Нэвтрэх",
-                }}
-              /> */}
             </>
           )}
         </Drawer.Section>

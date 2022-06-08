@@ -21,7 +21,7 @@ const FormText = (props) => {
       >
         <Feather name={props.icon} size={20} color={textColor} />
         <TextInput
-          {...props} // placeholder={props.placeholder} -- ene 2 adilhan placeholder oos uur c ym awah bolomjtoi blno
+          {...props}
           style={{
             paddingLeft: 10,
             color: textColor,

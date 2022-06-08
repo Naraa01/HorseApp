@@ -3,8 +3,6 @@ import axios from "axios";
 import { url } from "../../Constants";
 
 export default (genderId, searchValue, refresh, setRefresh) => {
-  //genderId horse ees awna,, searchValue bs awna,, end local serverees orj irdgv uchir uuruur nerlej bolno
-
   const [horses, setHorses] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -14,8 +12,6 @@ export default (genderId, searchValue, refresh, setRefresh) => {
   };
 
   useEffect(() => {
-    //ene func n neg l udaa render hiigdeh ystoi uchir
-
     let limit = 30;
     let search = "";
 
@@ -24,7 +20,6 @@ export default (genderId, searchValue, refresh, setRefresh) => {
       search = `&search=${searchValue}`;
     }
 
-    // GET {{url}}/gender/622326eef252dca60a8e32a2/horses
     setLoading(true);
     axios
       .get(`${url}/horsesM`)
@@ -35,7 +30,7 @@ export default (genderId, searchValue, refresh, setRefresh) => {
         setRefresh(false);
       })
       .catch((err) => {
-        let message = err.message; //const bwal unshij chadahgu uchir
+        let message = err.message;
         if (message === "Request failed with status code 404")
           message = "Uuchlaarai iim ugugdul baihgu bn";
         else if (message === "Network Error")

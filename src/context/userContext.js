@@ -49,7 +49,6 @@ export const UserStore = (props) => {
 
   const signUp = (name, email, password) => {
     axios
-      // .post(`http://192.168.1.94:5001/userM/register`, {
       .post(`${url}/userM/register`, {
         name: name,
         email: email,
@@ -73,7 +72,7 @@ export const UserStore = (props) => {
         //   }); // key value,, // promise uchir then catch ta
       })
       .catch((err) => {
-        console.log(err.response.data.error.message); //response - serverees irsen obekt
+        console.log(err.response.data.error.message);
         // setError(err.response.data.error.message);
         loginFailed(err.message);
       });

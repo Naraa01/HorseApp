@@ -9,13 +9,13 @@ import {
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import { url } from "../../Constants";
-import { useNavigation } from "@react-navigation/native"; //React context Api ashiglaj hiij bga
+import { useNavigation } from "@react-navigation/native";
 import useHorses from "../hooks/useHorses";
 import Spinner from "../components/Spinner";
 import useGender from "../hooks/useGender";
 import Search from "../components/Search";
 
-const thousandify = require("thousandify"); //mungun temdegtiin myngatiin orongoor , tawina
+const thousandify = require("thousandify");
 
 const GenderListScreen = (props) => {
   const [horses, errorMessage, searchBook, loading] = useHorses(
@@ -25,7 +25,6 @@ const GenderListScreen = (props) => {
   );
   const [localSearchText, setLocalSearchText] = useState("");
   const [serverSearchText, setServerSearchText] = useState("");
-  // const [refresh, setRefresh] = useState(false);
   const [genders, errorMsg] = useGender();
 
   const searchHorseFromServer = () => {
@@ -34,22 +33,15 @@ const GenderListScreen = (props) => {
     console.log(serverSearchText);
   };
 
-  // useEffect(() => {
-  //   props.setRefresh(!props.refresh);
-  //   // filteredHorse;
-  // }, [horses]);
-
-  // console.log("horses ---> ", horses);
-  // console.log("props ---> ", props);
   const navigation = useNavigation();
 
-  const filteredHorse = horses.filter(
-    (el) => el.name.toLowerCase().includes(serverSearchText.toLowerCase()) //toLowerCase() bugdiin jijgeer hmgu haina
+  const filteredHorse = horses.filter((el) =>
+    el.name.toLowerCase().includes(serverSearchText.toLowerCase())
   );
-  // console.log("filteredHorsefilteredHorse", filteredHorse);
+
   const dataPhoto = filteredHorse.photo ? filteredHorse.photo : horses.photo;
   const dataName = filteredHorse.name ? filteredHorse.name : horses.name;
-  // console.log("filteredHorse,=====", filteredHorse);
+
   return (
     <View>
       {loading ? (

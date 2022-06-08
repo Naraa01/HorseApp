@@ -34,12 +34,6 @@ const FormPicker = (props) => {
               value={props.values[index]}
             ></Picker.Item>
           ))}
-          {/* <Picker.Item label="Азарга" value="genderId"></Picker.Item> */}
-          {/* <Picker.Item label="Их нас" value="genderId" color="red" ></Picker.Item>
-          <Picker.Item label="Соёолон" value="genderId"></Picker.Item>
-          <Picker.Item label="Хязаалан" value="genderId"></Picker.Item>
-          <Picker.Item label="Шүдлэн" value="genderId"></Picker.Item>
-          <Picker.Item label="Даага" value="genderId"></Picker.Item> */}
         </Picker>
       </View>
     </View>

@@ -13,9 +13,9 @@ const Search = ({ value, onValueChange, onFinishEnter }) => {
         style={css.searchText}
         placeholder="Search"
         placeholderTextColor={"#242B2E"}
-        autoCapitalize="none" // ehnii tomoor bichihgu bolgj bga
-        autoCorrect={false} //autoCorrect automat aar soligdoh
-        onEndEditing={onFinishEnter} //end suuld bicheed click darahad barij awdag
+        autoCapitalize="none"
+        autoCorrect={false}
+        onEndEditing={onFinishEnter}
       />
     </View>
   );
@@ -28,7 +28,6 @@ const css = StyleSheet.create({
     top: 15,
     height: 50,
     backgroundColor: "#E5E5E5",
-    // marginHorizontal: 20,
     borderWidth: 1,
     borderRadius: 10,
     flexDirection: "row",

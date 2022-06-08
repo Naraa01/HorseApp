@@ -3,8 +3,6 @@ import axios from "axios";
 import { url } from "../../Constants";
 
 export default (genderId, searchValue, refresh, setRefresh) => {
-  //genderId horse ees awna,, searchValue bs awna,, end local serverees orj irdgv uchir uuruur nerlej bolno
-
   const [horses, setHorses] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -22,7 +20,6 @@ export default (genderId, searchValue, refresh, setRefresh) => {
       search = `&search=${searchValue}`;
     }
 
-    // GET {{url}}/gender/622326eef252dca60a8e32a2/horses
     setLoading(true);
     axios
       .get(`${url}/gender/${genderId}/horses/public`)

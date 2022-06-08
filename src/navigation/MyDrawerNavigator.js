@@ -93,32 +93,6 @@ export default () => {
         </>
       )}
 
-      {/* <Drawer.Screen
-        //Screen n uru HomeScreen bolon HorseDetail ruu l navigation damjuulnaa,, comp bolh Horse.js, Category ntr luu damjuulahgu
-        //HomeScreen d navigation bgn bol teriigre HomeScreen ees damjuulj bolno // props oor damjuulaad bh n neg arga
-        //2doh arga n useNavigation - ashiglaad shuud ter gazraa ashiglaj bolno, Horse.js deer ashiglasan
-        name="Home"
-        component={HomeScreen}
-        options={({ navigation }) => ({
-          title: "Амазон номын дэлгүүр",
-          //
-          // headerRight: () => (
-          //   <Button
-          //     title="Цэс"
-          //     onPress={() => navigation.navigate("Detail", { id: "1" })}
-          //   />
-          // ),
-          // headerLeft: () => (
-          //   <View style={{ marginHorizontal: 15 }}>
-          //     <Button
-          //       title="But"
-          //       onPress={() => navigation.navigate("Detail", { id: "1" })}
-          //     />
-          //   </View>
-          // ),
-        })} //ingej uurchilj bolno deer bga home enee teree gsn utasnii deed hesgiig
-      /> */}
-
       <Drawer.Screen
         name="Details"
         component={HorseDetailScreen}

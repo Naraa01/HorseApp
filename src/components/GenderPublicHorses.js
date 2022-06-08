@@ -6,22 +6,15 @@ import Spinner from "./Spinner";
 import usePublicHorse from "../hooks/usePublicHorse";
 
 const GenderPublicHorses = (props) => {
-  // props dotroos -- {data, style, searchLocalValue, searchServerValue}
   const [horses, errorMessage, searchHorse, loading] = usePublicHorse(
     props.data._id,
-    props.searchServerValue, //haigaad enter darsan utga orj ireh ymuda
+    props.searchServerValue,
     props.refresh,
     props.setRefresh
-  ); //shuud searchServerValue damjuulj blno
-  //console.log(props.data, " props data *//*-*-*-*-**-");
+  );
 
-  // <Button
-  //   onPress={() => navigation.navigate("Detail")}
-  //   title="test" //navigation ii navigate iig ashiglan Detail ruu userj bnaa //Detail n App.js deer ugsun ner ym
-  // />;
-
-  const filteredHorse = horses.filter(
-    (el) => el.name.toLowerCase().includes(props.searchLocalValue.toLowerCase()) //toLowerCase() bugdiin jijgeer hmgu haina
+  const filteredHorse = horses.filter((el) =>
+    el.name.toLowerCase().includes(props.searchLocalValue.toLowerCase())
   );
   return (
     <View style={[{ ...props.style }]}>
@@ -43,20 +36,16 @@ const GenderPublicHorses = (props) => {
       {loading && <Spinner showText={false} />}
 
       <FlatList
-        horizontal //horizontal={true} --gsn utgatai
+        horizontal
         showsHorizontalScrollIndicator={false}
-        data={filteredHorse} //
-        keyExtractor={(horse) => horse._id} // bugdend n key ugnu
-        renderItem={
-          (horse) => (
-            <Horse
-              data={horse.item}
-              //navigation={props.navigation}
-            />
-          )
-
-          //<Text>{horse2.name}</Text>
-        } //
+        data={filteredHorse}
+        keyExtractor={(horse) => horse._id}
+        renderItem={(horse) => (
+          <Horse
+            data={horse.item}
+            //navigation={props.navigation}
+          />
+        )}
       />
     </View>
   );

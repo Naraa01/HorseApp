@@ -95,45 +95,6 @@ const Comments = (props) => {
         <View>
           <Text style={{ fontSize: 20 }}>Сэтгэгдэл</Text>
         </View>
-        {/* <View
-          style={{
-            // backgroundColor: "yellow",
-            flex: 1,
-            flexDirection: "row",
-            justifyContent: "flex-end",
-            marginHorizontal: 10,
-            alignItems: "center",
-          }}
-        >
-          <TouchableOpacity>
-            <Text
-              style={{
-                backgroundColor: "#F4F4F4",
-                borderColor: "#F4F4F4",
-                paddingHorizontal: 10,
-                paddingVertical: 2,
-                borderWidth: 0.5,
-                borderTopLeftRadius: 6,
-                borderBottomLeftRadius: 6,
-              }}
-            >
-              Latest
-            </Text>
-          </TouchableOpacity>
-          <Text
-            style={{
-              backgroundColor: "#FEFEFE",
-              borderColor: "#F1F1F1",
-              paddingHorizontal: 10,
-              paddingVertical: 2,
-              borderWidth: 0.5,
-              borderTopRightRadius: 6,
-              borderBottomRightRadius: 6,
-            }}
-          >
-            Popular
-          </Text>
-        </View> */}
       </View>
       <View
         style={{
@@ -150,13 +111,8 @@ const Comments = (props) => {
           onChangeText={checkComment}
           style={{
             height: "60%",
-            // margin: 12,
-            // borderBottomStartRadius: 2,
             borderBottomWidth: 1,
             borderBottomColor: "#DEDEDE",
-            // padding: 10,
-            // borderRadius: 10,
-            // borderColor: mainColor,
           }}
         />
         <View style={{ alignItems: "flex-end" }}>
@@ -185,10 +141,7 @@ const Comments = (props) => {
                       flex: 1,
                       flexDirection: "row",
                       icon: "layers",
-                      // marginHorizontal: 10,
-                      // justifyContent: "flex-end",
                       alignItems: "center",
-                      // backgroundColor: "yellow",
                     }}
                   >
                     <Image
@@ -205,22 +158,13 @@ const Comments = (props) => {
                   </View>
                   <View
                     style={{
-                      // flex: 1,
                       flexDirection: "row",
-                      // justifyContent: "flex-end",
-                      // marginHorizontal: 10,
                       alignItems: "center",
                     }}
                   >
                     <Text
                       style={{
                         color: "#9ea2a8",
-                        // flex: 1,
-                        // backgroundColor: "pink",
-                        // justifyContent: "flex-end",
-                        // alignItems: "flex-end",
-                        // alignContent: "flex-end",
-                        // alignSelf: "flex-end",
                       }}
                     >
                       {moment(el.createdAt).fromNow()}
@@ -264,7 +208,6 @@ const css = StyleSheet.create({
     // textTransform: "uppercase",
   },
   commentsList: {
-    // marginVertical: 20,
     paddingVertical: 20,
     borderBottomColor: "#a8b0bd",
     borderBottomWidth: 2,

@@ -1,10 +1,4 @@
-//useLayoutEffect -
-
 //StackNavigation menu hoorond shiljih bolomjiig udgug
-
-//promise--> .then, .catch
-//try catch
-// async, await
 import { Button, Text, View, Alert, StyleSheet } from "react-native";
 // import { BlurView } from "expo-blur";
 import { NavigationContainer } from "@react-navigation/native"; //

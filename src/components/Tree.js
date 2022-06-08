@@ -7,9 +7,6 @@ import { useNavigation } from "@react-navigation/native";
 const Tree = (props) => {
   const [treeData, setTreeData] = useState(null);
   const navigation = useNavigation();
-  // 'grid-template-rows: repeat(6, minmax(0, 1fr))'
-
-  // console.log("zuw data irjiniu ---->>>", treeData);
 
   const loadHorse = async () => {
     try {
@@ -18,11 +15,8 @@ const Tree = (props) => {
         // `${url}/horsesM/${props.horseId}/treelast`
         // `http://192.168.1.94:5001//horsesM/${horseId}`
       );
-      // const result = await axios.get(`${url}/horsesM/${horseId}`);
       setTreeData(result.data.data);
-      // setError(null);
     } catch (err) {
-      // setError(err.message);
       console.log("load Horse error ", err.message);
     }
   };
@@ -37,12 +31,6 @@ const Tree = (props) => {
         {/* etseg, eh */}
         <View style={css.allSmallView}>
           <TouchableOpacity
-            // style={{
-            //   borderWidth: 1,
-            //   borderColor: "#E1E1E1",
-            //   borderRadius: 20,
-            //   padding: 3,
-            // }}
             onPress={() => {
               navigation.navigate("Details", { horse: treeData?.fatherId });
             }}

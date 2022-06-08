@@ -4,19 +4,15 @@ import { url } from "../../Constants";
 
 const thousandify = require("thousandify"); //mungun temdegtiin myngatiin orongoor , tawina
 
-import { useNavigation } from "@react-navigation/native"; //React context Api ashiglaj hiij bga
+import { useNavigation } from "@react-navigation/native";
 
 const Gender = ({ data }) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
       onPress={() => navigation.navigate("GenderList", { horse: data })}
-      // onPress={() => navigation.navigate("Detail", { id: data._id })} //parameter damjuulalt,, detail n id g huleej awah bolomjtoi blson
       style={{
         paddingHorizontal: 10,
-        // marginLeft: 8,
-        // marginVertical: 10,
-        // width: 100,
       }}
     >
       <Image

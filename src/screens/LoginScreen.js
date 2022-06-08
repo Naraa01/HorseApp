@@ -19,8 +19,6 @@ import MyInput from "../components/MyInput";
 import UserContext from "../context/userContext";
 
 export default function ({ navigation, route }) {
-  //navigation delgets hoorond shiljih // props dotroosoo distract hiigeed awj bga
-
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);

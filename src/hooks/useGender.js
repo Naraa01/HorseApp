@@ -25,7 +25,7 @@ export default () => {
       })
       .catch((err) => {
         setLoading(false);
-        let message = err.message; //const bwal unshij chadahgu uchir
+        let message = err.message;
         if (message === "Request failed with status code 404")
           message = "Uuchlaarai iim ugugdul baihgu bn";
         else if (message === "Network Error")
